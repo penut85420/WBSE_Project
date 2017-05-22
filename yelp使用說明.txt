@@ -1,0 +1,44 @@
+使用說明
+1. 這是個eclipse專案，所以直接加到eclipse裡就可以，並調整專案內容及重新匯入外部jar
+2. 各種檔案的位置:
+	servlet 跟 java class 放在 src 裡
+	(按照各自所需的套件位置放)
+	
+	jar檔 放在 WebContent/WEB-INF/lib 裡
+	
+	css檔 放在 WebContent/css 裡
+	(各個模組用不同的css檔案，不要加在別人寫的檔案，以免造成大家混亂)
+	
+	js檔 放在 WebContent/js 裡
+	(各個模組用不同的js檔案，不要加在別人寫的檔案，以免造成大家混亂)
+	
+	html檔 放在 WebContent 裡
+	
+	圖片檔 放在 WebContent/picture 裡
+	(圖片檔請按照各自所需新增資料夾，不要加在別人建的資料夾，以免造成大家混亂，並且取好檔名)
+	
+=================================================================================================
+***資料庫使用說明***
+
+1. 在servlet呼叫
+DBConnection db = (DBConnection) getServletContext().getAttribute("db");
+
+2. select的話使用runSql方法
+ResultSet rs = db.runSql("select userID, account, password from account");
+
+3. INSERT、UPDATE、DELETE則使用updateSql
+int update = conn.updateSql(updatedbSQL);	//我懶得寫，所以用updateSQL代替，寫的時候要寫SQL語法喔
+
+請去看yelp.db.controller和model裡面所寫的
+不會再問我
+=================================================================================================
+***判斷是否登入的session使用說明***(尚未完成)
+
+每個網頁都要寫上
+<!-- judgeLogin.js -->
+<script src="js/judgeLogin.js"></script>
+這樣沒有登入的話會自動跳到登入頁面
+=================================================================================================
+=================================================================================================
+
+

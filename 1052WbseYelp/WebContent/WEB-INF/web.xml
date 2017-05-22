@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>1052WbseYelp</display-name>
+	<welcome-file-list>
+		<welcome-file>Login.html</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<description></description>
+		<display-name>LoginVerificationServlet.java</display-name>
+		<servlet-name>LoginVerificationServlet.java</servlet-name>
+		<servlet-class>yelp.wbse.controller.LoginVerificationServlet.java</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginVerificationServlet.java</servlet-name>
+		<url-pattern>/LoginVerificationServlet.java</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>LogoutServlet.java</display-name>
+		<servlet-name>LogoutServlet.java</servlet-name>
+		<servlet-class>yelp.wbse.controller.LogoutServlet.java</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LogoutServlet.java</servlet-name>
+		<url-pattern>/LogoutServlet.java</url-pattern>
+	</servlet-mapping>
+	<listener>
+		<listener-class>yelp.db.controller.ServletListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>url</param-name>
+		<param-value>jdbc:mysql://localhost/</param-value>
+	</context-param>
+	<context-param>
+		<param-name>database</param-name>
+		<param-value>yelp</param-value>
+	</context-param>
+	<context-param>
+		<param-name>user_name</param-name>
+		<param-value>root</param-value>
+	</context-param>
+	<context-param>
+		<param-name>password</param-name>
+		<param-value>15192353</param-value>
+	</context-param>
+</web-app>
