@@ -10,7 +10,7 @@ public class ServletListener implements ServletContextListener {
  
     public void contextInitialized(ServletContextEvent event) {
  
-    	ServletContext sc = event.getServletContext();		//取得Context裡的資料
+    	ServletContext sc = event.getServletContext();		
  
     	String url = sc.getInitParameter("url");
     	String user_name = sc.getInitParameter("user_name");
