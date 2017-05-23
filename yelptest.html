@@ -10,6 +10,7 @@
 		Things that you want search for:
 		<input type="text" id="key"/>
 		<input type="button" id="search" value="search!"/>
+		<input type="button" id="review" value="review!"/>
 		<p id="result"></p>
 <script>
 	$(document).ready(function() {
@@ -17,6 +18,26 @@
 			e.preventDefault();
 			$.ajax({
 				url : "yelpsearch.php",
+				cache:false,
+				data : {
+					searchkey : $("#key").val()
+				},
+				dataType : "html",
+
+				success : function(response) {				
+						$("#result").html(response);
+				},
+				error : function() {
+					console.log("error!");
+				}
+			});
+		});
+	});
+	$(document).ready(function() {
+		$("#review").click(function(e) {
+			e.preventDefault();
+			$.ajax({
+				url : "yelpreviews.php",
 				cache:false,
 				data : {
 					searchkey : $("#key").val()
