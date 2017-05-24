@@ -11,14 +11,17 @@ public class YelpAPI {
       StringBuilder result = new StringBuilder();
       URL url = new URL("https://api.yelp.com/v3/businesses/search?term=starbucks&latitude=37.786882&longitude=-122.399972");
       HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+      
       conn.setRequestProperty("Authorization", "Bearer NjTkv9DsFSTgRo3rPfQ-ID1llKXHOapEe6iGV7TDyDRoS-H0aZkwmWKcPfkF57PH83LfNIa4KlMqTPdW9aL_CJNXRWpC9Sk6Id79weuILaG53UumNIW_RxmkuhkkWXYx");
       conn.setRequestMethod("GET");
+      
       BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
       String line;
-      while ((line = rd.readLine()) != null) {
+      
+      while ((line = rd.readLine()) != null)
          result.append(line);
-      }
       rd.close();
+      
       return result.toString();
    }
 
