@@ -27,6 +27,14 @@
 		<servlet-name>LogoutServlet.java</servlet-name>
 		<url-pattern>/LogoutServlet.java</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>yelpserv</servlet-name>
+		<servlet-class>yelp.wbse.controller.SearchHandleServlet.java</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>yelpserv</servlet-name>
+		<url-pattern>/yelp.do</url-pattern>
+	</servlet-mapping>
 	<listener>
 		<listener-class>yelp.db.controller.ServletListener</listener-class>
 	</listener>
