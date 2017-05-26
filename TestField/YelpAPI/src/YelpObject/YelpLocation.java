@@ -3,23 +3,14 @@ package YelpObject;
 import org.json.*;
 
 public class YelpLocation {
-	String mAddr1;
-	String mAddr2;
-	String mAddr3;
-	String mCity;
-	String mZipCode;
-	String mCountry;
-	String mState;
-	String mDisplayAddress;
-	
+	String mAddr1, mAddr2, mAddr3;
+	String mCity, mZipCode, mCountry, mState, mDisplayAddress;
+
 	public YelpLocation(JSONObject obj) {
 		try {
-			if (obj.get("address1") == null) mAddr1 = "";
-			else mAddr1 = obj.getString("address1");
-			if (obj.get("address2") == null) mAddr2 = "";
-			else mAddr2 = obj.getString("address2");
-			if (obj.get("address3") == null) mAddr3 = "";
-			else mAddr3 = obj.getString("address3");
+			mAddr1 = obj.optString("address1", "");
+			mAddr2 = obj.optString("address2", "");
+			mAddr3 = obj.optString("address3", "");
 			mCity = obj.getString("city");
 			mZipCode = obj.getString("zip_code");
 			mCountry = obj.getString("country");
@@ -29,7 +20,16 @@ public class YelpLocation {
 			for (int i = 0; i < arr.length(); i++)
 				mDisplayAddress += arr.getString(i) + "\n";
 		} catch (JSONException e) {
-			
+			e.printStackTrace();
 		}
 	}
+	
+	public String getAddr1() { return mAddr1; }
+	public String getAddr2() { return mAddr2; }
+	public String getAddr3() { return mAddr3; }
+	public String getCity() { return mCity; }
+	public String getZipCode() { return mZipCode; }
+	public String getCountry() { return mCountry; }
+	public String getState() { return mState; }
+	public String getDisplayAddress() { return mDisplayAddress; }
 }

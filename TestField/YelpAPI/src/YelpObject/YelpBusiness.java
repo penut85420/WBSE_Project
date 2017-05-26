@@ -36,7 +36,7 @@ public class YelpBusiness {
 			yb.mRating = obj.getDouble("rating");
 			yb.mLatitude = obj.getJSONObject("coordinates").getDouble("latitude");
 			yb.mLongitude = obj.getJSONObject("coordinates").getDouble("longitude");
-			yb.mPrice = obj.getString("price");
+			yb.mPrice = obj.optString("price");
 			yb.mLocation = new YelpLocation(obj.getJSONObject("location"));
 			yb.mPhone = obj.getString("phone");
 			yb.mDisplayPhone = obj.getString("display_phone");
