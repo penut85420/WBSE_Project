@@ -11,8 +11,8 @@
 <body>
 	<input type="text" id="key"/>
 	<input type="button" id="search" value="search"/>
-	<p id="yel"></p>
 <script>
+$("#key").val('${sessionScope.yelp}');
 $(document).ready(function() {
 	$("#search").click(function(e) {
 		e.preventDefault();
@@ -30,7 +30,7 @@ $(document).ready(function() {
 					console.log("API創立成功");
 				else
 					console.log("API創立失敗");
-				$("#yel").val('${sessionScope.yelp}');
+				window.location.reload();
 			},
 			error : function() {
 				console.log("ajax失敗");
