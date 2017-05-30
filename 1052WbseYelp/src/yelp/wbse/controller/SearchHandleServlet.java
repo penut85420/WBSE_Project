@@ -16,7 +16,6 @@ import yelp.wbse.model.*;
 public class SearchHandleServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
 		Gson gson = new Gson();
 		
 		String key = request.getParameter("key");
