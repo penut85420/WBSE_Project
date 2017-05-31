@@ -13,12 +13,7 @@
 <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
 <script>var __adobewebfontsappname__="dreamweaver"</script>
 <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
 </head>
 <body>
 <!-- Main Container -->
@@ -34,12 +29,6 @@
       </ul>
     </nav>
   </header>
-  <!-- Hero Section -->
-  <!-- About Section -->
-  <!-- Stats Gallery Section -->
-  <!-- Parallax Section -->
-  
-  <!-- More Info Section -->
   <footer> </footer>
   <section class="banner">
     <h2 class="parallax"></h2>
@@ -60,7 +49,6 @@
 </div>
 <!-- Main Container Ends -->
 <script>
-$("#id").val('${sessionScope.yelp}');
 $(document).ready(function() {
 	$(".button").click(function(e) {
 		e.preventDefault();
@@ -74,15 +62,16 @@ $(document).ready(function() {
 			dataType : "json",
 
 			success : function(response) {	
-				if(response=="success")
+				if(response=="success"){
 					console.log("API創立成功");
+					
+				}
 				else
 					console.log("API創立失敗");
-				window.location.reload();
+				document.location.href="searchPage.jsp";
 			},
 			error : function() {
 				console.log("ajax失敗");
-				window.location.reload();
 			}
 		});
 	});

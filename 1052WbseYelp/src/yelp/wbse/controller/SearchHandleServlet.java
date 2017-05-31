@@ -31,8 +31,7 @@ public class SearchHandleServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		if (arr != null) {
-			YelpBusiness b = arr.get(0);
-			request.getSession().setAttribute("yelp", b.getBusinessID());
+			request.getSession().setAttribute("yelp", arr);
 		}
 		if(request.getSession().getAttribute("yelp")!=null){
 			response.getWriter().write(gson.toJson("success"));
