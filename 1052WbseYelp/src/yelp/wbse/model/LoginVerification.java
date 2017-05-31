@@ -8,7 +8,7 @@ import yelp.db.model.DBConnection;
 public class LoginVerification {
 
 	//已關資料庫
-	public HashMap verification(DBConnection conn, String account, String password) {
+	public HashMap<String, String> verification(DBConnection conn, String account, String password) {
 		String result = "請重新嘗試";
 		String s, p, userID = null;
 		
@@ -40,7 +40,7 @@ public class LoginVerification {
 		} catch (SQLException e) {
 			System.out.println("LogintDB Exception :" + e.toString());
 		}
-		HashMap loginResult = new HashMap();
+		HashMap<String, String> loginResult = new HashMap<String, String>();
 		loginResult.put("result", result);
 		loginResult.put("userID", userID);
 		return loginResult;

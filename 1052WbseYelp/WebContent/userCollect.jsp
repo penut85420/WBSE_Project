@@ -15,5 +15,6 @@
 			 out.println(arr.get(i));
 	     }
 	%>
+	<a href="Homepage.jsp">To mainpage</a>
 </body>
 </html>

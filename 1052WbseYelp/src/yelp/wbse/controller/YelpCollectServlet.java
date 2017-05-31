@@ -36,6 +36,7 @@ public class YelpCollectServlet extends HttpServlet {
 			JSONArray arr = new JSONArray();
 			if(jObj.getJSONArray("keep") != null){
 				arr = jObj.getJSONArray("keep");
+				System.out.println(arr);
 				}
 			session.setAttribute("userCollect", arr);
 		} catch (SQLException e) {e.printStackTrace();} catch (JSONException e) {

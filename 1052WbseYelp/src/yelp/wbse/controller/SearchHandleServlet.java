@@ -48,13 +48,15 @@ public class SearchHandleServlet extends HttpServlet {
 			}
 		}
 		else if(collect!=null){
-			JSONArray arra= (JSONArray)request.getSession().getAttribute("usercollect");
+			System.out.println(collect);
+			JSONArray arra= (JSONArray)request.getSession().getAttribute("userCollect");
 			String choice = request.getParameter("collect");
 			arra.put(choice);
 			String userID = (String)request.getSession().getAttribute("userID");
 			DBConnection db = (DBConnection) getServletContext().getAttribute("db");
+			System.out.println("update favorite SET keep='{\"keep\": "+arra.toString()+"}' where userID='"+userID+"'");
 			try {
-				db.runSql("update favorite SET keep="+arra+" where userID="+userID);
+				db.updateSql("update favorite SET keep=\'{\"keep\": "+arra.toString()+"}' where userID='"+userID+"'");		
 				request.getSession().setAttribute("userCollect", arra);
 			} catch (SQLException e) {
 				e.printStackTrace();

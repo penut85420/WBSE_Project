@@ -19,7 +19,7 @@
  		<c:forEach items="${sessionScope.yelp}" var="element">
  		<table border=3 rules="all">
  				<tr><td colspan=2>
-    			<input type="button" id="collect" name="collect" value="${element.getBusinessID()}" />
+    			<input type="button" class="collect" name="collect" value="${element.getBusinessID()}" />
 				</td>
 				<tr><td>BussinessID</td><td>${element.getBusinessID()}</td></tr>
 				<tr><td>Name</td><td>${element.getName()}</td></tr>
@@ -37,14 +37,14 @@
 		</c:forEach>
 <script>
 $(document).ready(function() {
-	$("#collect").click(function(e) {
+	$(".collect").click(function(e) {
 		e.preventDefault();
 		$.ajax({
 			type : "post",
 			cache : false,
 			url : "yelp.do",
 			data : {
-				collect : $("#collect").val()
+				collect : $(this).val()
 			},
 			dataType : "json",
 
