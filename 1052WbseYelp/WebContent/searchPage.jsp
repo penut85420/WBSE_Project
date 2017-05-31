@@ -15,9 +15,12 @@
 <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
 </head>
 <body>
-
+	<a href="Homepage.jsp">To homepage</a>
  		<c:forEach items="${sessionScope.yelp}" var="element">
  		<table border=3 rules="all">
+ 				<tr><td colspan=2>
+    			<input type="button" id="collect" name="collect" value="${element.getBusinessID()}" />
+				</td>
 				<tr><td>BussinessID</td><td>${element.getBusinessID()}</td></tr>
 				<tr><td>Name</td><td>${element.getName()}</td></tr>
 				<tr><td>Image</td><td><img width=200 src="${element.getImageURL()}"/></td></tr>
@@ -32,6 +35,32 @@
 				<tr><td>Distance</td><td>${element.getDistance()}</td></tr>
 		</table><br><br>
 		</c:forEach>
+<script>
+$(document).ready(function() {
+	$("#collect").click(function(e) {
+		e.preventDefault();
+		$.ajax({
+			type : "post",
+			cache : false,
+			url : "yelp.do",
+			data : {
+				collect : $("#collect").val()
+			},
+			dataType : "json",
 
+			success : function(response) {	
+				if(response=="success"){
+					alert("新增成功!");
+				}
+				else
+					alert("新增失敗!");
+			},
+			error : function() {
+				console.log("ajax失敗");
+			}
+		});
+	});
+});
+</script>
 </body>
 </html>

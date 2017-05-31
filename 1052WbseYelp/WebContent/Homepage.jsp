@@ -34,13 +34,11 @@
     <h2 class="parallax"></h2>
        <div style="text-align:center;">     
    <input type="text" name="key" id="id" style="font-size: 30px;" placeholder="Starbucks?">
-   </div>  
- 
-    <div>
       <form>
       </form>
     </div>
     <div class="button">search</div>
+    <a href="userCollect.jsp">To Collect</a>
   </section>
   <!-- Footer Section -->
   
@@ -50,6 +48,25 @@
 <!-- Main Container Ends -->
 <script>
 $(document).ready(function() {
+	$.ajax({
+		type : "post",
+		cache : false,
+		url : "collect.do",
+		data : {
+		},
+		dataType : "json",
+
+		success : function(response) {	
+			if(response=="success"){
+				console.log("收藏創立成功");
+			}
+			else
+				console.log("收藏創立失敗");
+		},
+		error : function() {
+			console.log("ajax失敗");
+		}
+	});
 	$(".button").click(function(e) {
 		e.preventDefault();
 		$.ajax({
@@ -57,7 +74,8 @@ $(document).ready(function() {
 			cache : false,
 			url : "yelp.do",
 			data : {
-				key : $("#id").val()
+				key : $("#id").val(),
+				search : "1"
 			},
 			dataType : "json",
 
