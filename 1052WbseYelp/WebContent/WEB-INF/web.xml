@@ -35,6 +35,14 @@
 		<servlet-name>yelpserv</servlet-name>
 		<url-pattern>/yelp.do</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>collectserv</servlet-name>
+		<servlet-class>yelp.wbse.controller.YelpCollectServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>collectserv</servlet-name>
+		<url-pattern>/collect.do</url-pattern>
+	</servlet-mapping>
 	<listener>
 		<listener-class>yelp.db.controller.ServletListener</listener-class>
 	</listener>
@@ -52,6 +60,6 @@
 	</context-param>
 	<context-param>
 		<param-name>password</param-name>
-		<param-value>15192353</param-value>
+		<param-value></param-value>
 	</context-param>
 </web-app>
