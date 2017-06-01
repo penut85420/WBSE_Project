@@ -24,8 +24,8 @@
   </a>
     <nav>
       <ul>
-        <li>HOME</li>
-        <li>LOGOUT</li>
+        <li>LOGIN</li>
+        <li>REGISTER</li>
       </ul>
     </nav>
   </header>
@@ -55,7 +55,6 @@ $(document).ready(function() {
 		data : {
 		},
 		dataType : "json",
-
 		success : function(response) {	
 			if(response=="success"){
 				console.log("收藏創立成功");
@@ -78,7 +77,6 @@ $(document).ready(function() {
 				search : "1"
 			},
 			dataType : "json",
-
 			success : function(response) {	
 				if(response=="success"){
 					console.log("API創立成功");
