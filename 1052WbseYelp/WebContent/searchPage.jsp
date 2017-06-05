@@ -33,6 +33,7 @@
 				<tr><td>Price</td><td>${element.getPrice()}</td></tr>
 				<tr><td>Phonenumber</td><td>${element.getPhone()}</td></tr>
 				<tr><td>Distance</td><td>${element.getDistance()}</td></tr>
+				<tr><td>Review</td><td>${sessionScope.yelpReview}</td></tr>
 		</table><br><br>
 		</c:forEach>
 <script>
