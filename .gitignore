@@ -1,4 +1,7 @@
 
+TestField/.recommenders/
 *.class
-.metadata
-*.class
+.metadata/
+.recommenders/
+Servers/
+RemoteSystemsTempFiles/

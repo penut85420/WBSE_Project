@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2017-05-22 18:16:15
+-- 產生時間： 2017-05-30 13:12:05
 -- 伺服器版本: 10.1.21-MariaDB
 -- PHP 版本： 7.1.1
 
@@ -30,16 +30,17 @@ CREATE TABLE `account` (
   `userID` varchar(10) NOT NULL,
   `account` varchar(10) NOT NULL,
   `password` varchar(15) NOT NULL,
-  `name` varchar(10) NOT NULL
+  `name` varchar(10) NOT NULL,
+  `birthday` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- 資料表的匯出資料 `account`
 --
 
-INSERT INTO `account` (`userID`, `account`, `password`, `name`) VALUES
-('1', '123', '123456', '海綿寶寶'),
-('2', '456', '123456', '派大星');
+INSERT INTO `account` (`userID`, `account`, `password`, `name`, `birthday`) VALUES
+('1', '123', '123456', '海綿寶寶', '0000-00-00'),
+('123456', '123456', '123456', '派大星', '2017-05-11');
 
 -- --------------------------------------------------------
 

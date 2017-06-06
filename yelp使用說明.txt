@@ -39,6 +39,19 @@ int update = conn.updateSql(updatedbSQL);	//我懶得寫，所以用updateSQL代
 <script src="js/judgeLogin.js"></script>
 這樣沒有登入的話會自動跳到登入頁面
 =================================================================================================
+***登出***
+// 登出
+	$("#logout").click(function() {
+		$.getScript("js/logout.js");
+	});
 =================================================================================================
+***取得使用者id的session***
+	HttpSession session = request.getSession();	
+	String userID = (String) session.getAttribute("userID");
+=================================================================================================
+***model產生器使用***
+<script src="js/modalGenerator.js"></script>
 
-
+modalGenerator("title", "body");
+modalGenerator("登出結果", "成功");
+=================================================================================================
