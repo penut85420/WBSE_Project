@@ -12,6 +12,9 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+
 <title>shop details</title>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <%
@@ -60,7 +63,14 @@ function initialize() {
 					<tr><td>Name</td><td>${element.getName()}</td></tr>
 					<tr><td>Image</td><td><img width=200 src="${element.getImageURL()}"/></td></tr>
 					<tr><td>Isclosed</td><td>${element.getIsClosed()}</td></tr>
-					<tr><td>Rating</td><td>${element.getRating()}</td></tr>
+					<tr><td>Rating</td><td><div id="rateYo"></div>${element.getRating()}</td></tr>
+					<script>
+					$(function () {
+						  $("#rateYo").rateYo({
+						    rating: "${element.getRating()}"
+						  }); 
+						});
+					</script>
 					<tr><td>URL</td><td>${element.getURL()}</td></tr>
 					<tr><td>ReviewCount</td><td>${element.getReviewCount()}</td></tr>
 					<tr><td>Latitude</td><td>${element.getLatitude()}</td></tr>

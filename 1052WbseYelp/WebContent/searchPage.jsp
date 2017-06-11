@@ -15,17 +15,31 @@
 <!--<script src="js/map.js"></script>-->
 <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it-->
 <script>var __adobewebfontsappname__="dreamweaver"</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script src="http://use.edgefonts.net/source-sans-pro:n2:default.js" type="text/javascript"></script>
 </head>
 <body>
 	<a href="Homepage.jsp">To homepage</a>
+	<c:set var="count" value="0" scope="page" />
  		<c:forEach items="${sessionScope.yelp}" var="element">
  		<table border=3 rules="all">
  				<tr><td colspan=2>
     			<input type="button" class="collect" name="collect" value="${element.getBusinessID().getBusiness().getBusinessID()}" /></td></tr>
 				<tr><td>Name</td><td>${element.getName()}</td></tr>
 				<tr><td>Image</td><td><img width=200 src="${element.getImageURL()}"/></td></tr>
-				<tr><td>Rating</td><td>${element.getRating()}</td></tr>
+				<tr><td>Rating</td><td><div id="rate${count}"></div>${element.getRating()}</td></tr>
+				<c:choose>
+				<c:when test="${element.getRating()>=0 }">
+				<script>
+				$(function () {
+					  $("#rate${count}").rateYo({
+					    rating: "${element.getRating()}"
+					  }); 
+					});
+				</script>
+				</c:when>
+				</c:choose>
 				<tr><td>Distance</td><td>${element.getDistance()}</td></tr>
 				<tr><td>Review</td><td>${sessionScope.yelpReview}</td></tr>
 				<form action="detail.jsp" method="POST">
@@ -36,6 +50,7 @@
 				</form>
 		</table>
 		<br><br>
+		<c:set var="count" value="${count + 1}" scope="page"/>
 		</c:forEach>
 <script>
 $(document).ready(function() {
