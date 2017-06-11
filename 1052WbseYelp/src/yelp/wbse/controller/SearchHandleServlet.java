@@ -28,7 +28,7 @@ public class SearchHandleServlet extends HttpServlet {
 			ArrayList<YelpBusiness> arr = null;
 			try {
 				arr = YelpBusiness.getBusinessList(tmp);
-				String ttmp = YelpSearch.getReview(arr.get(0).getBusinessID());
+				String ttmp = YelpSearch.getReview(arr.get(0).getBusinessID().toString());
 				ArrayList<YelpReview> arrReview = YelpReview.getReviewList(ttmp);
 				request.getSession().setAttribute("yelpReview", arrReview.get(0).getReview());
 			} catch (Exception e) {

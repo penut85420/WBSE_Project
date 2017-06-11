@@ -22,7 +22,7 @@
  		<c:forEach items="${sessionScope.yelp}" var="element">
  		<table border=3 rules="all">
  				<tr><td colspan=2>
-    			<input type="button" class="collect" name="collect" value="${element.getBusinessID()}" /></td></tr>
+    			<input type="button" class="collect" name="collect" value="${element.getBusinessID().getBusiness().getBusinessID()}" /></td></tr>
 				<tr><td>Name</td><td>${element.getName()}</td></tr>
 				<tr><td>Image</td><td><img width=200 src="${element.getImageURL()}"/></td></tr>
 				<tr><td>Rating</td><td>${element.getRating()}</td></tr>

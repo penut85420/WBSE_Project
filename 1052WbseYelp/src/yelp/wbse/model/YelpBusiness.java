@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import org.json.*;
 
 public class YelpBusiness {
-	String mBussinessID, mName, mImageURL, mURL, mPrice, mPhone, mDisplayPhone;
+	String mName, mImageURL, mURL, mPrice, mPhone, mDisplayPhone;
 	Double mRating, mLatitude, mLongitude, mDistance;
 	Integer mReviewCount;
 	Boolean mIsClosed;
+	BusinessID mBussinessID;
 	
 	ArrayList<String> mCategories;
 	YelpLocation mLocation;
@@ -23,7 +24,7 @@ public class YelpBusiness {
 			YelpBusiness yb = new YelpBusiness();
 			JSONObject obj = arr.getJSONObject(i);
 			yb.mJObject = obj;
-			yb.mBussinessID = obj.getString("id");
+			yb.mBussinessID = yb.new BusinessID(obj.getString("id"), yb);
 			yb.mName = obj.getString("name");
 			yb.mImageURL = obj.getString("image_url");
 			yb.mIsClosed = obj.getBoolean("is_closed");
@@ -47,7 +48,7 @@ public class YelpBusiness {
 		return businessList;
 	}
 	
-	public String getBusinessID() { return mBussinessID; }
+	public BusinessID getBusinessID() { return mBussinessID; }
 	public String getName() { return mName; }
 	public String getImageURL() { return mImageURL; }
 	public Boolean getIsClosed() { return mIsClosed; }
@@ -65,5 +66,23 @@ public class YelpBusiness {
 
 	public String toString() {
 		return String.format("ID: %s, Rating: %f", mBussinessID, mRating);
+	}
+	
+	public class BusinessID {
+		String mBusinessID;
+		YelpBusiness mParent;
+		
+		public BusinessID(String id, YelpBusiness parent) {
+			mBusinessID = id;
+			mParent = parent;
+		}
+		
+		public YelpBusiness getBusiness() {
+			return mParent;
+		}
+		
+		public String toString() {
+			return mBusinessID;
+		}
 	}
 }

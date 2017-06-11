@@ -37,7 +37,7 @@ public class YelpSearch {
 		ArrayList<YelpBusiness> barr = YelpBusiness.getBusinessList(getBusinesses(y));
 		for (YelpBusiness b : barr) {
 			System.out.println(b.getBusinessID());
-			ArrayList<YelpReview> rarr = YelpReview.getReviewList(getReview(b.getBusinessID()));
+			ArrayList<YelpReview> rarr = YelpReview.getReviewList(getReview(b.getBusinessID().toString()));
 			for (YelpReview r: rarr)
 				System.out.println("評價" + r.getRating() + ", " + r.getReview());
 		}
