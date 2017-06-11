@@ -38,7 +38,7 @@
       </form>
     </div>
     <div class="button">search</div>
-    <a href="userCollect.jsp">To Collect</a>
+    <a href="show.do">To Collect</a>
   </section>
   <!-- Footer Section -->
   
