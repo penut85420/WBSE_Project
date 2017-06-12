@@ -36,6 +36,14 @@
 		<url-pattern>/yelp.do</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>collectshowserv</servlet-name>
+		<servlet-class>yelp.wbse.controller.CollectShowServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>collectshowserv</servlet-name>
+		<url-pattern>/show.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>collectserv</servlet-name>
 		<servlet-class>yelp.wbse.controller.YelpCollectServlet</servlet-class>
 	</servlet>
