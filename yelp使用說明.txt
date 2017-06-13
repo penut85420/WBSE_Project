@@ -65,10 +65,10 @@ modalGenerator("登出結果", "成功");
 收藏列表 : collect.js
 登入登出 : login.js
 註冊 : register.js
+搜尋列表 : search.js
 
-2. 搜尋列表ui目前寫在homepageUI.jsp裡面，
-並未幫忙和進去homepage.js裡，
-請自行使用
+2.目前homepageUI.jsp裡面，
+並未幫忙加上原本程式碼，請自行加入
 
 3. 撰寫新的jsp的時候，請先套用模板
 <!-- 模板套用 -->
