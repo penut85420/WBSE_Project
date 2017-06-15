@@ -43,7 +43,9 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="#" id="collect"><span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;收藏</a>
+						<a id="modal-1" href="#modal-container-collect" role="button" class="btn" data-toggle="modal" id="collect">
+							<span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;收藏
+						</a>
 					</li>
 					<li>
 						<a href="#" id="login"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;登入</a>
@@ -73,6 +75,86 @@
 		</nav>
 
 	</div>
+	
+	<!-- modal start -->
+	<div class="modal fade" id="modal-container-collect" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="close()">×</button>
+					<h4 class="modal-title" id="alertTitle">
+					<!-------------------------------------- title start -------------------------------------->
+						已收藏列表
+					<!-------------------------------------- title end -------------------------------------->
+					</h4>
+				</div>
+				<div class="modal-body">
+					<div id="alertbody">
+						<!-------------------------------------- body start -------------------------------------->
+						<div class="row">
+							<div class="col-md-1">
+										<div class="pull-left" id="heart" style="color:red;cursor:pointer;">
+											<h1>❤</h1>
+										</div>
+							</div>
+					    	<div class="col-md-11">
+									<a href="detailCollectUI.jsp" class="list-group-item">
+										<div class="pull-left">
+											<img class="img-thumbnail" src="picture/logo.png" style="float:left;height:70px;width:70px;">
+										</div>
+										<div class="pull-left" style="margin-left:1vw;text-overflow:ellipsis;">
+											<h4 class="list-group-item-heading">Name : 星巴克-信義區-4</h4>
+											<p class="list-group-item-text">Distance : 4400KM</p>
+											<p class="list-group-item-text">Rating : ★★★★☆</p>
+											<p class="list-group-item-text">PhoneNumber : 02 25578493</p>
+										</div>
+										<div class="pull-right" style="margin-left:1vw;text-overflow:ellipsis;">
+											<h4 class="list-group-item-heading">信義</h4>
+											<p class="list-group-item-text">11 Bao"an Street</p>
+											<p class="list-group-item-text">保安街11號</p>
+											<p class="list-group-item-text">Datong District, 台北市 103</p>
+											<p class="list-group-item-text">Taiwan</p>
+										</div>
+										<div class="clearfix"></div>
+									</a>
+		       				</div>
+		       				<div class="col-md-1">
+										<div class="pull-left" id="heart" style="color:red;cursor:pointer;">
+											<h1>❤</h1>
+										</div>
+							</div>
+					    	<div class="col-md-11">
+									<a href="detailCollectUI.jsp" class="list-group-item">
+										<div class="pull-left">
+											<img class="img-thumbnail" src="picture/logo.png" style="float:left;height:70px;width:70px;">
+										</div>
+										<div class="pull-left" style="margin-left:1vw;text-overflow:ellipsis;">
+											<h4 class="list-group-item-heading">Name : 星巴克-信義區-4</h4>
+											<p class="list-group-item-text">Distance : 4400KM</p>
+											<p class="list-group-item-text">Rating : ★★★★☆</p>
+											<p class="list-group-item-text">PhoneNumber : 02 25578493</p>
+										</div>
+										<div class="pull-right" style="margin-left:1vw;text-overflow:ellipsis;">
+											<h4 class="list-group-item-heading">信義</h4>
+											<p class="list-group-item-text">11 Bao"an Street</p>
+											<p class="list-group-item-text">保安街11號</p>
+											<p class="list-group-item-text">Datong District, 台北市 103</p>
+											<p class="list-group-item-text">Taiwan</p>
+										</div>
+										<div class="clearfix"></div>
+									</a>
+		       				</div>
+					    </div>
+					<!-------------------------------------- body end -------------------------------------->
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="close()">關閉</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- modal end -->
 	
 </body>
 </html>
