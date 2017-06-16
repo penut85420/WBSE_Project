@@ -1,12 +1,10 @@
 package yelp.wbse.model;
 
-import java.net.URLEncoder;
 import java.util.*;
 
 import org.json.*;
 
 import yelp.wbse.model.YelpBusiness;
-import yelp.wbse.model.YelpBusiness.BusinessID;
 import yelp.wbse.model.Conn;
 
 public class YelpIDBusiness {

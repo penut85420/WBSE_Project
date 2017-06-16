@@ -13,6 +13,7 @@ public class YelpBusiness {
 	
 	ArrayList<String> mCategories;
 	YelpLocation mLocation;
+	ArrayList<YelpReview> mReview;
 	JSONObject mJObject;
 	
 	public static ArrayList<YelpBusiness> getBusinessList(String s) throws Exception {
@@ -42,10 +43,42 @@ public class YelpBusiness {
 			yb.mPhone = obj.getString("phone");
 			yb.mDisplayPhone = obj.getString("display_phone");
 			yb.mDistance = obj.getDouble("distance");
+			yb.mReview = YelpReview.getReviewList(YelpSearch.getReview(yb.mBussinessID.mBusinessID));
 			businessList.add(yb);
 		}
 		
 		return businessList;
+	}
+	
+	public YelpBusiness() { }
+	
+	public YelpBusiness(String s) {
+		try {
+			JSONObject obj = new JSONObject(s);
+			mJObject = obj;
+			mBussinessID = new BusinessID(obj.getString("id"), this);
+			mName = obj.getString("name");
+			mImageURL = obj.getString("image_url");
+			mIsClosed = obj.getBoolean("is_closed");
+			mURL = obj.getString("url");
+			mReviewCount = obj.getInt("review_count");
+			JSONArray category = obj.getJSONArray("categories");
+			mCategories = new ArrayList<>();
+			for (int j = 0; j < category.length(); j++)
+				mCategories.add(category.getJSONObject(j).getString("title"));
+			mRating = obj.getDouble("rating");
+			mLatitude = obj.getJSONObject("coordinates").getDouble("latitude");
+			mLongitude = obj.getJSONObject("coordinates").getDouble("longitude");
+			mPrice = obj.optString("price");
+			mLocation = new YelpLocation(obj.getJSONObject("location"));
+			mPhone = obj.getString("phone");
+			mDisplayPhone = obj.getString("display_phone");
+			if (!obj.isNull("distance"))
+				mDistance = obj.getDouble("distance");
+			mReview = YelpReview.getReviewList(YelpSearch.getReview(mBussinessID.mBusinessID));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public BusinessID getBusinessID() { return mBussinessID; }
@@ -63,6 +96,7 @@ public class YelpBusiness {
 	public String getPhone() { return mPhone; }
 	public String getDisplayPhone() { return mDisplayPhone; }
 	public Double getDistance() { return mDistance; }
+	public ArrayList<YelpReview> getReview() { return mReview; }
 
 	public String toString() {
 		return String.format("ID: %s, Rating: %f", mBussinessID, mRating);

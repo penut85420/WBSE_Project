@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.json.*;
 
+import yelpAPI.YelpSearch;
+
 public class YelpBusiness {
 	String mBussinessID, mName, mImageURL, mURL, mPrice, mPhone, mDisplayPhone;
 	Double mRating, mLatitude, mLongitude, mDistance;
@@ -12,6 +14,7 @@ public class YelpBusiness {
 	
 	ArrayList<String> mCategories;
 	YelpLocation mLocation;
+	ArrayList<YelpReview> mReview;
 	JSONObject mJObject;
 	
 	public static ArrayList<YelpBusiness> getBusinessList(String s) throws Exception {
@@ -41,6 +44,7 @@ public class YelpBusiness {
 			yb.mPhone = obj.getString("phone");
 			yb.mDisplayPhone = obj.getString("display_phone");
 			yb.mDistance = obj.getDouble("distance");
+			yb.mReview = YelpReview.getReviewList(YelpSearch.getReview(yb.mBussinessID));
 			businessList.add(yb);
 		}
 		
@@ -62,6 +66,7 @@ public class YelpBusiness {
 	public String getPhone() { return mPhone; }
 	public String getDisplayPhone() { return mDisplayPhone; }
 	public Double getDistance() { return mDistance; }
+	public ArrayList<YelpReview> getReview() { return mReview; }
 
 	public String toString() {
 		return String.format("ID: %s, Rating: %f", mBussinessID, mRating);

@@ -23,20 +23,12 @@ public class SearchHandleServlet extends HttpServlet {
 			YelpParameter yelpparameter = new YelpParameter();
 			yelpparameter.setParam("term", key);
 			yelpparameter.setParam("location", "taipei");
-			String tmp = YelpSearch.getBusinesses(yelpparameter);
 			
-			ArrayList<YelpBusiness> arr = null;
-			try {
-				arr = YelpBusiness.getBusinessList(tmp);
-				String ttmp = YelpSearch.getReview(arr.get(0).getBusinessID().toString());
-				ArrayList<YelpReview> arrReview = YelpReview.getReviewList(ttmp);
-				request.getSession().setAttribute("yelpReview", arrReview.get(0).getReview());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			if (arr != null) {
-				request.getSession().setAttribute("yelp", arr);
-			}
+			ArrayList<YelpBusiness> arr = YelpSearch.getBusiness_(yelpparameter);
+
+			request.getSession().setAttribute("yelpReview", arr.get(0).getReview().get(0).getReview());
+			request.getSession().setAttribute("yelp", arr);
+			
 			if (request.getSession().getAttribute("yelp") != null) {
 				response.getWriter().write(gson.toJson("success"));
 			} else {

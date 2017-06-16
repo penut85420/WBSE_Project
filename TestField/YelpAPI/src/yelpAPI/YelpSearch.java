@@ -3,8 +3,7 @@ package yelpAPI;
 import java.net.URLEncoder;
 import java.util.*;
 
-import YelpObject.YelpBusiness;
-import YelpObject.YelpReview;
+import YelpObject.*;
 import http.Conn;
 
 public class YelpSearch {
@@ -28,18 +27,25 @@ public class YelpSearch {
 		}
 		return null;
 	}
+	
+	public static ArrayList<YelpBusiness> getBusiness_(YelpParameter y) {
+		try {
+			return YelpBusiness.getBusinessList(getBusinesses(y));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public static void main(String[] args) throws Exception {
 		YelpParameter y = new YelpParameter();
 		y.setParam("term", "food");
 		y.setParam("location", "taipei");
-		y.setParam("limit", "3");
-		ArrayList<YelpBusiness> barr = YelpBusiness.getBusinessList(getBusinesses(y));
-		for (YelpBusiness b : barr) {
-			System.out.println(b.getBusinessID());
-			ArrayList<YelpReview> rarr = YelpReview.getReviewList(getReview(b.getBusinessID()));
-			for (YelpReview r: rarr)
-				System.out.println("µû»ù¡G" + r.getRating() + ", " + r.getReview());
+
+		ArrayList<YelpBusiness> barr = getBusiness_(y);
+		System.out.println("what");
+		for (YelpBusiness b: barr) {
+			System.out.println(b.getReview().get(0).getReview());
 		}
 	}
 }
