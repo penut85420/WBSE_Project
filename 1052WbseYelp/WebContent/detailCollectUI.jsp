@@ -34,7 +34,11 @@ $(document).ready(function() {
 });
 </script>
 
-
+<%
+	request.setCharacterEncoding("UTF-8");
+	String count=request.getParameter("count");
+	System.out.println(count);
+%>
 </head>
 <body>
 
@@ -44,22 +48,29 @@ $(document).ready(function() {
 	<div class="row">
 		<div class="col-md-12" style="margin-top:5vh;"></div>
 	</div>
-	
+	<c:set var="count" value="0"></c:set>
+	<c:set var="cou" value="<%=count %>"></c:set>
 	<!-- 主要 -->
+	<c:forEach items="${sessionScope.showCollect}" var="element" varStatus="loopCounter">
+			
+			<c:if test="${count == cou}">
 	<div class="row" style="color:white;margin-top:2vh;">
 		<div class="col-md-1"></div>
 		<div class="col-md-5">
 			<div style="text-overflow:ellipsis;text-align:left;">
-				<h1>星巴克-信義區-4&nbsp;&nbsp;<span id="heart" style="color:white;cursor:pointer;">❤</span></h1>
-				<h5 style="margin-top:6vh;">Rating : ★★★★☆</h5>
-				<h5 style="margin-top:3vh;">PhoneNumber : 02 25578493</h5>
-				<h5 style="margin-top:3vh;">Address : 200基隆市仁愛區愛二路45號</h5>
+			
+			
+					<h1>${element.getBusinessID()}&nbsp;&nbsp;<span id="heart" style="color:white;cursor:pointer;">❤</span></h1>
+					<h5 style="margin-top:6vh;">Rating : ${element.getRating()}</h5>
+					<h5 style="margin-top:3vh;">PhoneNumber : ${element.getPhone()}</h5>
+					<h5 style="margin-top:3vh;">Address : ${element.getLocation().getDisplayAddress()}</h5>
 				<!--  <button type='submit' id="collect" class='btn btn-default' style="font-weight:bold;width:15vw;margin-top:3vh;"><h5>❤收藏</h5></button> -->
+				
 			</div>			
 		</div>
 		<div class="col-md-6"  style="text-align:center;">
 			<div style="text-overflow:ellipsis;">
-				<img class="img-thumbnail" src="picture/logo.png" style="float:left;height:60vh;width:35vw;">
+				<img class="img-thumbnail" src="${element.getImageURL()}" style="float:left;height:60vh;width:35vw;">
 			</div>
 		</div>
 	</div>
@@ -111,24 +122,29 @@ $(document).ready(function() {
 	<div class="row" style="color:white;margin-top:3vh;">	
 		<div class="col-md-1"></div>
 		<div class="col-md-10" style="text-align:left;">
-			<span style="font-size:2em;">蔡</span>佳靜<br>
-			<span style="color:yellow;">★★★★☆</span>&nbsp;&nbsp;06/04/2017<br>
-			很適合大型聚餐20人左右為佳<br><br>
+			${element.getReview().get(0).getUserName()}<br>
+			<span style="color:yellow;">Rating: ${element.getReview().get(0).getRating()}
+			</span>&nbsp;&nbsp;${element.getReview().get(0).getTime()}<br>
+			${element.getReview().get(0).getReview()}<br><br>
 			
-			<span style="font-size:2em;">H</span>siu Kuei Tsai<br>
-			<span style="color:yellow;">★★★☆☆</span>&nbsp;&nbsp;05/31/2017<br>
-			很喜歡去吃，肉品質很棒。 但是希望針對6歲以下兒童能有不同的優惠， 因為帶兩個小朋友去，小一女生食量不大的多少會吃一些。 最小的雖然未滿六歲(身高比較高)食量小也需要收費250元， 媽咪荷包有點傷心~~~~謝謝。 上次錯過兒童專案，不然一定要去吃!!<br><br>
+			${element.getReview().get(1).getUserName()}<br>
+			<span style="color:yellow;">Rating: ${element.getReview().get(1).getRating()}
+			</span>&nbsp;&nbsp;${element.getReview().get(1).getTime()}<br>
+			${element.getReview().get(1).getReview()}<br><br>
 			
-			<span style="font-size:2em;">B</span>onnie Zang<br>
-			<span style="color:yellow;">★☆☆☆☆</span>&nbsp;&nbsp;11/22/2016<br>
-			昨天午餐在「胡弄壽喜燒」覺得男服務生很親切，讓我和朋友度過一個愉悅的一天 有些小建議：調味料（醬汁、湯頭 可分兩種更好） 因為我們覺的太鹹了些。<br><br>
+			${element.getReview().get(2).getUserName()}<br>
+			<span style="color:yellow;">Rating: ${element.getReview().get(2).getRating()}
+			</span>&nbsp;&nbsp;${element.getReview().get(2).getTime()}<br>
+			${element.getReview().get(2).getReview()}<br><br>
 		</div>
 		<div class="col-md-1"></div>
 	</div>
 	
 	<!-- 以免被最底下的灰色擋住 -->
 	<br><br><br><br>
-		 
+	</c:if>
+	<c:set var="count" value="${count+1 }"></c:set>
+	</c:forEach>
 <!-- ======================================================================================================================================================= -->
 </div>		
 

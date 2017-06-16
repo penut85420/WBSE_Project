@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.1">
 	<display-name>1052WbseYelp</display-name>
 	<welcome-file-list>
-		<welcome-file>Login.html</welcome-file>
+		<welcome-file>HomepageUI.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
 		<description></description>

@@ -13,19 +13,22 @@ import yelp.wbse.model.*;
 public class CollectShowServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		JSONArray jarr = (JSONArray) request.getSession().getAttribute("userCollect");
 		try {
-			ArrayList<YelpBusiness> arr= YelpIDBusiness.yelpcollect(jarr);
+			ArrayList<YelpBusiness> arr= new ArrayList<YelpBusiness>();
+			for(int i=0; i<jarr.length(); i++){
+				arr.add(YelpSearch.getBusinesses(jarr.getString(i).toString()));
+			}
 			request.getSession().setAttribute("showCollect", arr);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect("userCollect.jsp");
+		Gson gson = new Gson();
+		if (request.getSession().getAttribute("userCollect") != null) {
+			response.getWriter().write(gson.toJson("success"));
+		}
 	}
 }
 

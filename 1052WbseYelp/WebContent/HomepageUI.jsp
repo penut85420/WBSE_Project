@@ -92,7 +92,7 @@ $(document).ready(function() {
 										<img class="img-thumbnail" src="picture/logo.png" style="float:left;height:70px;width:70px;">
 									</div>
 									<div class="pull-left" style="margin-left:1vw;text-overflow:ellipsis;">
-										<h4 class="list-group-item-heading">Name : ${element.getName()}</h4>
+										<h4 class="list-group-item-heading">Name : </h4>
 										<p class="list-group-item-text">Distance : 4400KM</p>
 										<p class="list-group-item-text">Rating : ★★★★☆</p>
 										<p class="list-group-item-text">PhoneNumber : 02 25578493</p>

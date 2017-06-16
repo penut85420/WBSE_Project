@@ -30,5 +30,6 @@ function modalGenerator(title, body){
 }
 
 function close(){
-	window.location.href = "Homepage.html";
+	document.cookie="0";
+	window.location.href = "HomepageUI.jsp";
 }

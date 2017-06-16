@@ -47,6 +47,36 @@
 							$("#modal-container-1 .close").click();		//關閉modal
 							$("#login").html("<span class='glyphicon glyphicon-user'></span>&nbsp;&nbsp;登出");
 							login = 1;	//狀態改成已登入
+							$.ajax({
+								url : "collect.do",
+								method : "post",
+								data : {
+								},
+								dataType : "json",
+
+								success : function(response) {	
+									$.ajax({
+										url : "show.do",
+										method : "post",
+										data : {
+										},
+										dataType : "json",
+						
+										success : function(response) {		
+											if (response == "success") {
+												document.cookie = "1";
+												location.reload();
+											}
+										},
+										error : function() {
+											console.log("錯誤訊息");
+										}
+									});
+								},
+								error : function() {
+									console.log("錯誤訊息");
+								}
+							});
 						}
 						else {
 							$("#loginFail").empty();

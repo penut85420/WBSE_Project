@@ -11,11 +11,6 @@ $(document).ready(function() {
 		$.getScript("js/login.js");	//取得login.js
 	});
 	
-	/*收藏列表*/
-	$("#collect").click(function(e) {
-		$.getScript("js/collect.js");	//取得collect.js
-	});
-	
 	/*註冊列表*/
 	$("#register").click(function(e) {
 		$.getScript("js/register.js");	//取得register.js
