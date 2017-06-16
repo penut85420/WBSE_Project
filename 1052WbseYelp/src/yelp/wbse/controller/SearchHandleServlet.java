@@ -24,7 +24,7 @@ public class SearchHandleServlet extends HttpServlet {
 			yelpparameter.setParam("term", key);
 			yelpparameter.setParam("location", "taipei");
 			
-			ArrayList<YelpBusiness> arr = YelpSearch.getBusiness_(yelpparameter);
+			ArrayList<YelpBusiness> arr = YelpSearch.getBusiness(yelpparameter);
 
 			request.getSession().setAttribute("yelpReview", arr.get(0).getReview().get(0).getReview());
 			request.getSession().setAttribute("yelp", arr);

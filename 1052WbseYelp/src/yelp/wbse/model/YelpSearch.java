@@ -19,9 +19,9 @@ public class YelpSearch {
 		return null;
 	}
 	
-	public static String getBusinesses(String id) {
+	public static YelpBusiness getBusinesses(String id) {
 		try {
-			return Conn.get(businessUrl + id);
+			return new YelpBusiness(Conn.get(businessUrl + id));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -37,7 +37,7 @@ public class YelpSearch {
 		return null;
 	}
 	
-	public static ArrayList<YelpBusiness> getBusiness_(YelpParameter y) {
+	public static ArrayList<YelpBusiness> getBusiness(YelpParameter y) {
 		try {
 			return YelpBusiness.getBusinessList(getBusinesses(y));
 		} catch (Exception e) {
@@ -57,7 +57,7 @@ public class YelpSearch {
 //			System.out.println(b.getReview().get(0).getReview());
 //		}
 		
-		YelpBusiness bb = new YelpBusiness(getBusinesses("north-india-restaurant-san-francisco"));
+		YelpBusiness bb = getBusinesses("north-india-restaurant-san-francisco");
 		log(bb.mBussinessID.mBusinessID);
 	}
 	
