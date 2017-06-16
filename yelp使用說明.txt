@@ -31,13 +31,7 @@ int update = conn.updateSql(updatedbSQL);	//我懶得寫，所以用updateSQL代
 
 請去看yelp.db.controller和model裡面所寫的
 不會再問我
-=================================================================================================
-***判斷是否登入的session使用說明***(尚未完成)
 
-每個網頁都要寫上
-<!-- judgeLogin.js -->
-<script src="js/judgeLogin.js"></script>
-這樣沒有登入的話會自動跳到登入頁面
 =================================================================================================
 ***登出***
 // 登出
@@ -62,10 +56,10 @@ modalGenerator("登出結果", "成功");
 ***UI使用說明***
 
 1. 以下功能請寫在
-收藏列表 : collect.js
+收藏列表 : collect.js(已寫進standardtitle.jsp)
 登入登出 : login.js
 註冊 : register.js
-搜尋列表 : search.js
+搜尋列表 : search.js(已寫進homepageUI.jsp)
 
 2.目前homepageUI.jsp裡面，
 並未幫忙加上原本程式碼，請自行加入
@@ -83,3 +77,29 @@ modalGenerator("登出結果", "成功");
 	<!-- 撰寫區 -->
 </div>
 =================================================================================================
+***登入狀態跟非登入狀態可做什麼事情***
+
+$(document).ready(function() {
+		$.ajax({
+			url : "LoginVerificationServlet",
+			//url : "http://140.121.197.130:8000/BBDPDoctor/LoginVerificationServlet",
+			data : {
+				state : "judgeLogin"
+			},
+			dataType : "json",
+
+			success : function(response) {	
+				if(response){
+					/*已登入狀態*/
+					console.log("已登入狀態");
+				}
+				else{
+					/*已登出狀態*/
+					console.log("已登出狀態");
+				}
+			},
+			error : function() {
+				console.log("錯誤訊息");
+			}
+		});
+	});
