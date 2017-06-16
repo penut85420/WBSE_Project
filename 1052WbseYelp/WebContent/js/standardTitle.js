@@ -1,5 +1,3 @@
-var login=0;	//1 已登入 0尚未登入
-
 $(document).ready(function() {
 	/*前置*/
 	$.getScript("js/modalGenerator.js");	//取得modalGenerator.js
@@ -15,4 +13,7 @@ $(document).ready(function() {
 	$("#register").click(function(e) {
 		$.getScript("js/register.js");	//取得register.js
 	});
+	
+	/*判斷是否登入 顯示該頁面為登入或登出狀態*/
+	$.getScript("js/judgeLogin.js");	//取得judgeLogin.js
 });

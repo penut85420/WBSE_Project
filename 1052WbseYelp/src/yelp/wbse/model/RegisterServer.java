@@ -24,7 +24,7 @@ public class RegisterServer {
 				errors = "失敗!請輸入正確的帳號!";
 				return errors;
 			} else if (isInvalidPassword(password, passwordCheck)) {
-				errors = "失敗!請確認密碼符合格式並再度確認密碼!";
+				errors = "失敗!請確認密碼符合格式!";
 				return errors;
 			} else if (isInvalidAgree(agree)) {
 				errors = "失敗!請先閱讀並同意使用者條款!";

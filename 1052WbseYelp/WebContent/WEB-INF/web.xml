@@ -28,6 +28,16 @@
 		<url-pattern>/LogoutServlet.java</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<description></description>
+		<display-name>RegisterServlet.java</display-name>
+		<servlet-name>RegisterServlet.java</servlet-name>
+		<servlet-class>yelp.wbse.controller.RegisterServlet.java</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegisterServlet.java</servlet-name>
+		<url-pattern>/RegisterServlet.java</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>yelpserv</servlet-name>
 		<servlet-class>yelp.wbse.controller.SearchHandleServlet</servlet-class>
 	</servlet>
@@ -68,6 +78,6 @@
 	</context-param>
 	<context-param>
 		<param-name>password</param-name>
-		<param-value></param-value>
+		<param-value>15192353</param-value>
 	</context-param>
 </web-app>

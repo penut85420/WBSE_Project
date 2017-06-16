@@ -8,14 +8,17 @@ $(document).ready(function() {
 			dataType : "json",
 
 			success : function(response) {	
-				if(response)
-					alert("已登入judgeLogin.js : " + response);
-				else
-					alert("尚未登入judgeLogin.js : " + response);
+				if(response){
+					$("#login").html("<span class='glyphicon glyphicon-user'></span>&nbsp;&nbsp;登出");
+					console.log("已登入狀態");
+				}
+				else{
+					$("#login").html("<span class='glyphicon glyphicon-user'></span>&nbsp;&nbsp;登入");
+					console.log("已登出狀態");
+				}
 			},
 			error : function() {
 				console.log("錯誤訊息");
 			}
 		});
 	});
-
