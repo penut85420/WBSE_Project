@@ -43,7 +43,7 @@
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a id="modal-1" href="#modal-container-collect" role="button" class="btn" data-toggle="modal" id="collect">
+						<a id="modal-collect" href="#modal-container-collect" role="button" class="btn" data-toggle="modal" id="collect">
 							<span class="glyphicon glyphicon-heart"></span>&nbsp;&nbsp;收藏
 						</a>
 					</li>
@@ -82,14 +82,14 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="close()">×</button>
-					<h4 class="modal-title" id="alertTitle">
+					<h4 class="modal-title">
 					<!-------------------------------------- title start -------------------------------------->
 						已收藏列表
 					<!-------------------------------------- title end -------------------------------------->
 					</h4>
 				</div>
 				<div class="modal-body">
-					<div id="alertbody">
+					<div>
 						<!-------------------------------------- body start -------------------------------------->
 						<div class="row">
 							<div class="col-md-1">
