@@ -104,7 +104,7 @@
 										</div>
 							</div>
 					    	<div class="col-md-11">
-									<a href="detailCollectUI.jsp?count=${count}" class="list-group-item">
+									<a href="detailCollectUI.jsp?count=${count}&lat=${element.getLatitude()}&lng=${element.getLongitude()}" class="list-group-item">
 										<div class="pull-left">
 											<img class="img-thumbnail" src="${element.getImageURL()}" style="float:left;height:70px;width:70px;">
 										</div>

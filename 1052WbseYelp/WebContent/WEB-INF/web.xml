@@ -78,6 +78,6 @@
 	</context-param>
 	<context-param>
 		<param-name>password</param-name>
-		<param-value>15192353</param-value>
+		<param-value>anth11225</param-value>
 	</context-param>
 </web-app>

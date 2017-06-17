@@ -143,7 +143,7 @@ $(document).ready(function() {
 								</a>-->
 								<c:set var="count" value="0" scope="page" />
  								<c:forEach items="${sessionScope.yelp}" var="element">
-								<a href="detailSearchUI.jsp" class="list-group-item">
+								<a href="detailSearchUI.jsp?count=${count}&lat=${element.getLatitude()}&lng=${element.getLongitude()}" class="list-group-item">
 									<div class="pull-left">
 										<img class="img-thumbnail" src="${element.getImageURL()}" style="float:left;height:70px;width:70px;">
 									</div>

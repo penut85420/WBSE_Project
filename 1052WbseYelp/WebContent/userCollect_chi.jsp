@@ -37,7 +37,7 @@
 				
 				<tr><td>Review</td><td>${sessionScope.yelpReview}</td></tr>	
 				
-				<form action="detailCollectUI.jsp?count=${count}&lat=${element.getLatitude()}&lng=${element.getLongitude()}" method="POST">
+				<form action="detail.jsp" method="POST">
 				<input type="show" value="${element.getBusinessID()}" name="ID">
 				<input type="show" value="${element.getLatitude()}" name="lat">
 				<input type="show" value="${element.getLongitude()}" name="lng">
