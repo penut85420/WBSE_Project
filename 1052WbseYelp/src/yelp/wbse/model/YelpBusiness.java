@@ -96,7 +96,15 @@ public class YelpBusiness {
 	public String getPhone() { return mPhone; }
 	public String getDisplayPhone() { return mDisplayPhone; }
 	public Double getDistance() { return mDistance; }
-	public ArrayList<YelpReview> getReview() { return mReview; }
+	public ArrayList<YelpReview> getReview() { 
+		try {
+			return YelpReview.getReviewList(YelpSearch.getReview(mBussinessID.mBusinessID));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} 
+	}
 
 	public String toString() {
 		return String.format("ID: %s, Rating: %f", mBussinessID, mRating);
