@@ -19,21 +19,21 @@ public class SearchHandleServlet extends HttpServlet {
 		String search = request.getParameter("search");
 		String collect = request.getParameter("collect");
 		String key = request.getParameter("key");
-		if (search != null) { // create API
+		String location = request.getParameter("location");
+
+		if (search != null) {
 			YelpParameter yelpparameter = new YelpParameter();
 			yelpparameter.setParam("term", key);
-			yelpparameter.setParam("location", "taipei");
-			
+			yelpparameter.setParam("location", location);
+
 			ArrayList<YelpBusiness> arr = YelpSearch.getBusiness(yelpparameter);
 
-			request.getSession().setAttribute("yelpReview", arr.get(0).getReview().get(0).getReview());
 			request.getSession().setAttribute("yelp", arr);
-			
-			if (request.getSession().getAttribute("yelp") != null) {
+
+			if (request.getSession().getAttribute("yelp") != null)
 				response.getWriter().write(gson.toJson("success"));
-			} else {
+			else
 				response.getWriter().write(gson.toJson("error"));
-			}
 		} else if (collect != null) {
 			System.out.println(collect);
 			JSONArray arra = (JSONArray) request.getSession().getAttribute("userCollect");

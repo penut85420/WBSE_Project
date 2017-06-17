@@ -30,7 +30,30 @@ $(document).ready(function() {
 	
 	/*near預設值*/
 	$("#near").val("Taipei Taiwan");
+	
+	$("#search").click(function(e) {
+		e.preventDefault();
+		$.ajax({
+			type: "post",
+			cache: false,
+			url: "yelp.do",
+			data: {
+				key : $("#id").val(),
+				location: $("#near").val(),
+				search : "1"
+			},
+			dataType: "json",
+			success: function(response) {	
+				if (response == "success") console.log("API創立成功");
+				else console.log("API創立失敗");
+				document.location.href="searchPage.jsp";
+			}, error: function() {
+				console.log("ajax失敗");
+			}
+		});
+	});
 });
+
 </script>
 
 </head>
@@ -110,11 +133,13 @@ $(document).ready(function() {
 									<div class="pull-left">
 										<img class="img-thumbnail" src="picture/logo.png" style="float:left;height:70px;width:70px;">
 									</div>
+									<c:set var="count" value="0" scope="page" />
+ 									<c:forEach items="${sessionScope.yelp}" var="element">
 									<div class="pull-left" style="margin-left:1vw;text-overflow:ellipsis;">
-										<h4 class="list-group-item-heading">Name : 星巴克-信義區-4</h4>
-										<p class="list-group-item-text">Distance : 4400KM</p>
-										<p class="list-group-item-text">Rating : ★★★★☆</p>
-										<p class="list-group-item-text">PhoneNumber : 02 25578493</p>
+										<h4 class="list-group-item-heading">Name : ${element.getBusinessID().toString()}</h4>
+										<p class="list-group-item-text">Distance : ${element.getDistance()}</p>
+										<p class="list-group-item-text">Rating : ${element.getRating()}</p>
+										<p class="list-group-item-text">PhoneNumber : ${element.getPhone()}</p>
 									</div>
 									<div class="pull-right" style="margin-left:1vw;text-overflow:ellipsis;">
 										<h4 class="list-group-item-heading">信義</h4>
@@ -123,6 +148,8 @@ $(document).ready(function() {
 										<p class="list-group-item-text">Datong District, 台北市 103</p>
 										<p class="list-group-item-text">Taiwan</p>
 									</div>
+									<c:set var="count" value="${count + 1}" scope="page"/>
+									</c:forEach>
 									<div class="clearfix"></div>
 								</a>
 							</div>

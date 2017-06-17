@@ -9,6 +9,7 @@ public class YelpReview {
 	
 	public static ArrayList<YelpReview> getReviewList(String s) throws Exception {
 		ArrayList<YelpReview> reviewList = new ArrayList<>();
+		if (s == null) return null;
 		JSONObject obj = new JSONObject(s);
 		JSONArray arr = obj.getJSONArray("reviews");
 		for (int i = 0; i < arr.length(); i++) {
@@ -24,7 +25,8 @@ public class YelpReview {
 		mRating = obj.getInt("rating");
 		JSONObject user = obj.getJSONObject("user");
 		mUserName = user.getString("name");
-		mUserPicURL = user.getString("image_url");
+		if (!user.isNull("image_url"))
+			mUserPicURL = user.getString("image_url");
 		mTime = obj.getString("time_created");
 	}
 
