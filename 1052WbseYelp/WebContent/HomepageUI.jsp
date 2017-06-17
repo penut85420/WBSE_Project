@@ -109,7 +109,7 @@ $(document).ready(function() {
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="close()">×</button>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="close();document.cookie='0'">×</button>
 					<h4 class="modal-title">
 					<!-------------------------------------- title start -------------------------------------->
 						搜尋結果列表
@@ -171,7 +171,7 @@ $(document).ready(function() {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="close()">關閉</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal" onclick="close(); document.cookie='0'">關閉</button>
 				</div>
 			</div>
 		</div>
