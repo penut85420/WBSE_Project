@@ -43,7 +43,7 @@ public class YelpBusiness {
 			yb.mPhone = obj.getString("phone");
 			yb.mDisplayPhone = obj.getString("display_phone");
 			yb.mDistance = obj.getDouble("distance");
-			yb.mReview = YelpReview.getReviewList(YelpSearch.getReview(yb.mBussinessID.mBusinessID));
+			// yb.mReview = YelpReview.getReviewList(YelpSearch.getReview(yb.mBussinessID.mBusinessID));
 			businessList.add(yb);
 		}
 		
