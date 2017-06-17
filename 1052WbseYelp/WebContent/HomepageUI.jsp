@@ -19,9 +19,7 @@
 <script>
 $(document).ready(function() {
 	if (document.cookie == "1") {
-		$("#modal-container-search").attr("aria-hidden","false")
-	} else {
-		$("#modal-container-search").attr("aria-hidden","true")
+		$('#modal-show').click();
 	}
 	/*前置*/
 	$.getScript("js/modalGenerator.js");	//取得modalGenerator.js
@@ -87,9 +85,16 @@ $(document).ready(function() {
 			</div>
 		</div>
 		<div class="col-md-12" style="text-align:center;margin-top:5vh;">
-			<a id="modal-search" href="#modal-container-search" role="button" class="btn" data-toggle="modal" >
+			<a id="modal-search" href="#modal-container-search" role="button" class="btn">
 				<button type='submit' id="search" class='btn btn-default' style="font-weight:bold;margin:0;width:20vw;">
 					<h5>search</h5>
+				</button>
+			</a>
+	    </div>
+		<div class="col-md-12" style="text-align:center;margin-top:5vh;visibility: hidden;">
+			<a id="modal-show" href="#modal-container-search" role="button" class="btn" data-toggle='modal'>
+				<button type='submit' id="search" class='btn btn-default' style="font-weight:bold;margin:0;width:20vw;">
+					<h5>Show</h5>
 				</button>
 			</a>
 	    </div>
