@@ -30,6 +30,7 @@ public class YelpSearch {
 
 	public static String getReview(String id) {
 		try {
+			System.out.println(id);
 			return Conn.get(String.format(reviewsUrl, URLEncoder.encode(id, "UTF-8")));
 		} catch (Exception e) {
 			e.printStackTrace();

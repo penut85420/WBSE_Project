@@ -18,6 +18,11 @@
 
 <script>
 $(document).ready(function() {
+	if (document.cookie == "1") {
+		$("#modal-container-search").attr("aria-hidden","false")
+	} else {
+		$("#modal-container-search").attr("aria-hidden","true")
+	}
 	/*前置*/
 	$.getScript("js/modalGenerator.js");	//取得modalGenerator.js
 	$("body").append(
@@ -32,6 +37,8 @@ $(document).ready(function() {
 	$("#near").val("Taipei Taiwan");
 	
 	$("#search").click(function(e) {
+		document.cookie = "1";
+		$("#modal-container-search").attr("aria-hidden","true")
 		e.preventDefault();
 		$.ajax({
 			type: "post",
@@ -110,7 +117,7 @@ $(document).ready(function() {
 						<div class="row">
 				    	<div class="col-md-12">
 		       				<div class="list-group">
-								<a href="detailSearchUI.jsp" class="list-group-item">
+								<!--<a href="detailSearchUI.jsp" class="list-group-item">
 									<div class="pull-left">
 										<img class="img-thumbnail" src="picture/logo.png" style="float:left;height:70px;width:70px;">
 									</div>
@@ -128,12 +135,12 @@ $(document).ready(function() {
 										<p class="list-group-item-text">Taiwan</p>
 									</div>
 									<div class="clearfix"></div>
-								</a>
+								</a>-->
 								<c:set var="count" value="0" scope="page" />
  								<c:forEach items="${sessionScope.yelp}" var="element">
 								<a href="detailSearchUI.jsp" class="list-group-item">
 									<div class="pull-left">
-										<img class="img-thumbnail" src="picture/logo.png" style="float:left;height:70px;width:70px;">
+										<img class="img-thumbnail" src="${element.getImageURL()}" style="float:left;height:70px;width:70px;">
 									</div>
 									
 									<div class="pull-left" style="margin-left:1vw;text-overflow:ellipsis;">
