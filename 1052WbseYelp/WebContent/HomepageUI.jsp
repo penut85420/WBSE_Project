@@ -46,7 +46,7 @@ $(document).ready(function() {
 			success: function(response) {	
 				if (response == "success") console.log("API創立成功");
 				else console.log("API創立失敗");
-				document.location.href="searchPage.jsp";
+				document.location.href="HomepageUI.jsp";
 			}, error: function() {
 				console.log("ajax失敗");
 			}
@@ -129,12 +129,13 @@ $(document).ready(function() {
 									</div>
 									<div class="clearfix"></div>
 								</a>
+								<c:set var="count" value="0" scope="page" />
+ 								<c:forEach items="${sessionScope.yelp}" var="element">
 								<a href="detailSearchUI.jsp" class="list-group-item">
 									<div class="pull-left">
 										<img class="img-thumbnail" src="picture/logo.png" style="float:left;height:70px;width:70px;">
 									</div>
-									<c:set var="count" value="0" scope="page" />
- 									<c:forEach items="${sessionScope.yelp}" var="element">
+									
 									<div class="pull-left" style="margin-left:1vw;text-overflow:ellipsis;">
 										<h4 class="list-group-item-heading">Name : ${element.getBusinessID().toString()}</h4>
 										<p class="list-group-item-text">Distance : ${element.getDistance()}</p>
@@ -142,15 +143,13 @@ $(document).ready(function() {
 										<p class="list-group-item-text">PhoneNumber : ${element.getPhone()}</p>
 									</div>
 									<div class="pull-right" style="margin-left:1vw;text-overflow:ellipsis;">
-										<h4 class="list-group-item-heading">信義</h4>
-										<p class="list-group-item-text">11 Bao"an Street</p>
-										<p class="list-group-item-text">保安街11號</p>
-										<p class="list-group-item-text">Datong District, 台北市 103</p>
-										<p class="list-group-item-text">Taiwan</p>
+										<!--<h4 class="list-group-item-heading">信義</h4>-->
+										<p class="list-group-item-text">${element.getLocation().getDisplayAddress()}</p>
 									</div>
+									
+									<div class="clearfix"></div>
 									<c:set var="count" value="${count + 1}" scope="page"/>
 									</c:forEach>
-									<div class="clearfix"></div>
 								</a>
 							</div>
 	       				</div>
