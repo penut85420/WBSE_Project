@@ -103,6 +103,8 @@ public class YelpBusiness {
 			return mReview;
 		} catch (Exception e) {
 			e.printStackTrace();
+			mReview = new ArrayList<>();
+			mReview.add(new YelpReview());
 			return null;
 		} 
 	}

@@ -29,6 +29,10 @@ public class YelpReview {
 			mUserPicURL = user.getString("image_url");
 		mTime = obj.getString("time_created");
 	}
+	
+	public YelpReview() {
+		mURL = mReview = mUserName = mUserPicURL = mTime = "NULL";
+	}
 
 	public String getURL() { return mURL; }
 	public String getReview() { return mReview; }
