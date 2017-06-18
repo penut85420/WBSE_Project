@@ -98,9 +98,10 @@ public class YelpBusiness {
 	public Double getDistance() { return mDistance; }
 	public ArrayList<YelpReview> getReview() { 
 		try {
-			return YelpReview.getReviewList(YelpSearch.getReview(mBussinessID.mBusinessID));
+			if (mReview == null)
+				mReview = YelpReview.getReviewList(YelpSearch.getReview(mBussinessID.mBusinessID));
+			return mReview;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		} 
