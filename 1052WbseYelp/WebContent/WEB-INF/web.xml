@@ -38,27 +38,27 @@
 		<url-pattern>/RegisterServlet.java</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>yelpserv</servlet-name>
+		<servlet-name>SearchHandleServlet.java</servlet-name>
 		<servlet-class>yelp.wbse.controller.SearchHandleServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>yelpserv</servlet-name>
+		<servlet-name>SearchHandleServlet.java</servlet-name>
 		<url-pattern>/yelp.do</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>collectshowserv</servlet-name>
+		<servlet-name>CollectShowServlet.java</servlet-name>
 		<servlet-class>yelp.wbse.controller.CollectShowServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>collectshowserv</servlet-name>
+		<servlet-name>CollectShowServlet.java</servlet-name>
 		<url-pattern>/show.do</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>collectserv</servlet-name>
+		<servlet-name>YelpCollectServlet.java</servlet-name>
 		<servlet-class>yelp.wbse.controller.YelpCollectServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>collectserv</servlet-name>
+		<servlet-name>YelpCollectServlet.java</servlet-name>
 		<url-pattern>/collect.do</url-pattern>
 	</servlet-mapping>
 	<listener>
@@ -78,6 +78,6 @@
 	</context-param>
 	<context-param>
 		<param-name>password</param-name>
-		<param-value>anth11225</param-value>
+		<param-value></param-value>
 	</context-param>
 </web-app>

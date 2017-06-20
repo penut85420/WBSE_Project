@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.net.*" %>
+<%@ page import="org.json.*" %>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="yelp.wbse.model.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,8 +29,15 @@
 	String shopLat=request.getParameter("lat");
 	String shopLng=request.getParameter("lng");
 	String nearby=request.getParameter("near");
-	int arr[] = (int [])request.getSession().getAttribute("heart");
-	int heart = arr[Integer.valueOf(count)];
+	int heart=0;
+	ArrayList<YelpBusiness> arr =(ArrayList<YelpBusiness>)request.getSession().getAttribute("yelp");
+	JSONArray jarr = (JSONArray) request.getSession().getAttribute("userCollect");
+		for(int c=0; c<jarr.length();c++){
+				if(arr.get(Integer.valueOf(count)).getBusinessID().toString().equals(jarr.get(c).toString())){
+					heart=1;
+				}
+		}
+
 	System.out.println(shopLat);
 	System.out.println(shopLng);
 %>
@@ -198,11 +208,7 @@ $(document).ready(function() {
 										},
 										dataType : "json",
 										success : function(response) {	
-											if(response=="success"){
-												console.log("收藏刪除成功");
-											}
-											else
-												console.log("收藏刪除失敗");
+											location.reload();
 										},
 										error : function() {
 											console.log("ajax失敗");
@@ -222,11 +228,7 @@ $(document).ready(function() {
 										},
 										dataType : "json",
 										success : function(response) {	
-											if(response=="success"){
-												console.log("收藏創立成功");
-											}
-											else
-												console.log("收藏創立失敗");
+											location.reload();
 										},
 										error : function() {
 											console.log("ajax失敗");

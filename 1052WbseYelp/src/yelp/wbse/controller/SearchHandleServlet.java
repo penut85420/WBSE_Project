@@ -29,23 +29,6 @@ public class SearchHandleServlet extends HttpServlet {
 			ArrayList<YelpBusiness> arr = new ArrayList<YelpBusiness>();
 			arr = YelpSearch.getBusiness(yelpparameter);
 			request.getSession().setAttribute("yelp", arr);
-			JSONArray jarr = (JSONArray) request.getSession().getAttribute("userCollect");
-			int x [] = new int [25];
-			for(int i=0; i<arr.size(); i++){
-				for(int c=0; c<jarr.length();c++){
-					try {
-						if(arr.get(i).getBusinessID().toString().equals(jarr.get(c).toString())){
-							x[i]=1;
-							System.out.println(arr.get(i).getBusinessID()+"----"+jarr.get(c).toString());
-						}
-					} catch (JSONException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				if(x[i]!=1)x[i]=0;
-			}
-			request.getSession().setAttribute("heart", x);
 			
 			request.getSession().setAttribute("nearby",request.getParameter("location") );
 
@@ -54,11 +37,13 @@ public class SearchHandleServlet extends HttpServlet {
 			else
 				response.getWriter().write(gson.toJson("error"));
 		} else if (collect != null) {
+			ArrayList<YelpBusiness> arr=(ArrayList<YelpBusiness>)request.getSession().getAttribute("showCollect");
 			System.out.println(collect);
 			JSONArray arra = (JSONArray) request.getSession().getAttribute("userCollect");
 			String choice = request.getParameter("collect");
 			if(collectmethod==1){
 				arra.put(choice);
+				arr.add(YelpSearch.getBusinesses(collect));
 			}
 			else
 			{
@@ -70,6 +55,12 @@ public class SearchHandleServlet extends HttpServlet {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+				}
+				for(int cou=0;cou<arr.size();cou++){
+					if(arr.get(cou).getBusinessID().toString().equals(collect)){
+						arr.remove(cou);
+					}
+					else{System.out.println("why");}
 				}
 			}
 			String userID = (String) request.getSession().getAttribute("userID");

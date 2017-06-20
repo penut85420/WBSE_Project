@@ -82,7 +82,6 @@ $(document).ready(function() {
 								
 												success : function(response) {		
 													if (response == "success") {
-														document.cookie = "1";
 														location.reload();
 													}
 												},

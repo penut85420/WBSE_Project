@@ -41,7 +41,7 @@
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-				</button> <a class="navbar-brand" href="#">Yelp Bla Bla</a>
+				</button> <a class="navbar-brand" href="HomepageUI.jsp">Yelp Bla Bla</a>
 			</div>
 			
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -104,7 +104,7 @@
 						<c:set var="count" value="0" scope="page" />
  						<c:forEach items="${sessionScope.showCollect}" var="element">
 							<div class="col-md-1">
-										<div class="pull-left" id="${count}" onclick="test(this.id)" style="color:red;cursor:pointer;">
+										<div class="pull-left" id="${count}" onclick="test(this.id)" name="${element.getBusinessID()}" style="color:red;cursor:pointer;">
 											<h1>❤</h1>
 										</div>
 										<c:choose>
@@ -148,25 +148,21 @@
 	<script>
 	
 	  function test(th){
-		  console.log(th+"efae");
 	    if(arr[th]==1){
 	    	$("#"+th).css("color", "black");
+	    	console.log($("#"+th).attr('name')+"fafefaf");
 	    	arr[th]=0;
 	    	$.ajax({
 				type : "post",
 				cache : false,
 				url : "yelp.do",
 				data : {
-					collect : "${element.getBusinessID()}",
+					collect : $("#"+th).attr('name'),
 					collectmethod : 2
 				},
 				dataType : "json",
 				success : function(response) {	
-					if(response=="success"){
-						console.log("收藏刪除成功");
-					}
-					else
-						console.log("收藏刪除失敗");
+					location.reload();
 				},
 				error : function() {
 					console.log("ajax失敗");
@@ -181,16 +177,12 @@
 				cache : false,
 				url : "yelp.do",
 				data : {
-					collect : "${element.getBusinessID()}",
+					collect : $("#"+th).attr('name'),
 					collectmethod : 1
 				},
 				dataType : "json",
 				success : function(response) {	
-					if(response=="success"){
-						console.log("收藏創立成功");
-					}
-					else
-						console.log("收藏創立失敗");
+					location.reload();
 				},
 				error : function() {
 					console.log("ajax失敗");
@@ -210,7 +202,7 @@
 		
 						success : function(response) {		
 							if (response == "success") {
-								document.cookie = "1";
+								location.reload();
 							}
 						},
 						error : function() {
