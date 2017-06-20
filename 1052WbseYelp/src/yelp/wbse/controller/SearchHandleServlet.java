@@ -28,7 +28,6 @@ public class SearchHandleServlet extends HttpServlet {
 			ArrayList<YelpBusiness> arr = new ArrayList<YelpBusiness>();
 			arr = YelpSearch.getBusiness(yelpparameter);
 			request.getSession().setAttribute("yelp", arr);
-<<<<<<< HEAD
 			JSONArray jarr = (JSONArray) request.getSession().getAttribute("userCollect");
 			int x [] = new int [25];
 			for(int i=0; i<arr.size(); i++){
@@ -47,9 +46,8 @@ public class SearchHandleServlet extends HttpServlet {
 			}
 			request.getSession().setAttribute("heart", x);
 			
-=======
 			request.getSession().setAttribute("nearby",request.getParameter("location") );
->>>>>>> bf67523b684dfbccf7eeffea8b56b2ee2f9eeac0
+
 			if (request.getSession().getAttribute("yelp") != null)
 				response.getWriter().write(gson.toJson("success"));
 			else
