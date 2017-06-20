@@ -30,7 +30,6 @@ public class RegisterServlet extends HttpServlet {
 		String passwordCheck = request.getParameter("passwordCheck");
 		String name = request.getParameter("name");
 		String birthday = request.getParameter("birthday");
-		String agree = request.getParameter("agree");
 
 		String errors = new String(); // 錯誤訊息
 
@@ -38,7 +37,7 @@ public class RegisterServlet extends HttpServlet {
 		DBConnection db = (DBConnection) getServletContext().getAttribute("db");
 		
 		RegisterServer register = new RegisterServer();
-		errors = register.registerAdd(db, account, password, passwordCheck, name, birthday, agree);
+		errors = register.registerAdd(db, account, password, passwordCheck, name, birthday);
 		System.out.println("RegisterServlet registerAdd: " + errors);
 
 		// 回傳json型態

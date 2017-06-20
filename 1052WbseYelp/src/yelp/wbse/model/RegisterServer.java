@@ -9,7 +9,7 @@ import yelp.db.model.DBConnection;
 public class RegisterServer {
 	//不用關資料庫
 	public String registerAdd(DBConnection conn, String account, String password, String passwordCheck, String name,
-			String birthday, String agree) {
+			String birthday) {
 		try {
 			System.out.println("server 傳入的參數: " + account);
 			// 判斷錯誤
@@ -25,9 +25,6 @@ public class RegisterServer {
 				return errors;
 			} else if (isInvalidPassword(password, passwordCheck)) {
 				errors = "失敗!請確認密碼符合格式!";
-				return errors;
-			} else if (isInvalidAgree(agree)) {
-				errors = "失敗!請先閱讀並同意使用者條款!";
 				return errors;
 			}
 			// 都沒有錯誤才新增註冊資料進入資料庫
@@ -101,20 +98,5 @@ public class RegisterServer {
 			return true;
 		}
 	}
-
-	// 失敗!請先閱讀並同意使用者條款!
-	private boolean isInvalidAgree(String agree) {
-		if (agree.equals("false") == true)
-			return true;
-		else
-			return false;
-	}
-
-	public static void main(String[] args) {
-		RegisterServer jdbc = new RegisterServer();
-		// jdbc.registerAdd("H222222222", "123456", "123456", "黃佳惠", "女",
-		// "1995/11/22", "true");
-		System.out.println("身份證字號長度是否正確 : " + jdbc.isInvalidAccount("H222222222"));
-	}
-
+	
 }
