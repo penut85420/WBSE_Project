@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2017-04-02" view-index="0" gantt-divider-location="475" resource-divider-location="300" version="2.8.5" locale="zh_TW">
+<?xml version="1.0" encoding="UTF-8"?><project name="Untitled Gantt Project" company="" webLink="http://" view-date="2017-05-16" view-index="0" gantt-divider-location="475" resource-divider-location="300" version="2.8.5" locale="zh_TW">
     <description/>
-    <view zooming-state="default:7" id="gantt-chart">
+    <view zooming-state="default:2" id="gantt-chart">
         <field id="tpd3" name="名稱" width="240" order="0"/>
         <field id="tpd4" name="起始日期" width="116" order="1"/>
         <field id="tpd5" name="結束日期" width="115" order="2"/>
@@ -33,12 +33,13 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
+        <task id="52" name="需求及設計" color="#8cb6ce" meeting="false" start="2017-05-17" duration="5" complete="0" expand="true"/>
         <task id="6" name="架設資料庫" color="#8cb6ce" meeting="false" start="2017-05-17" duration="5" complete="0" expand="true"/>
-        <task id="0" name="Yelp api 模組" meeting="false" start="2017-05-17" duration="15" complete="0" expand="false">
-            <task id="13" name="Yelp研究分析" color="#8cb6ce" meeting="false" start="2017-05-17" duration="4" complete="0" expand="true">
+        <task id="0" name="Yelp api 模組" meeting="false" start="2017-05-17" duration="15" complete="0" expand="true">
+            <task id="13" name="Yelp研究分析" color="#8cb6ce" meeting="false" start="2017-05-17" duration="5" complete="0" expand="true">
                 <depend id="14" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="14" name="模組化實作" color="#8cb6ce" meeting="false" start="2017-05-23" duration="11" complete="0" expand="true"/>
+            <task id="14" name="模組化實作" color="#8cb6ce" meeting="false" start="2017-05-24" duration="10" complete="0" expand="true"/>
         </task>
         <task id="1" name="登入註冊模組" meeting="false" start="2017-05-17" duration="15" complete="0" expand="true">
             <task id="2" name="UI設計與實作" color="#8cb6ce" meeting="false" start="2017-05-17" duration="5" complete="0" expand="true">
@@ -51,13 +52,13 @@
         </task>
         <task id="10" name="搜尋模組" meeting="false" start="2017-05-24" duration="20" complete="0" expand="true">
             <task id="16" name="UI設計與實作" color="#8cb6ce" meeting="false" start="2017-05-24" duration="4" complete="0" expand="true"/>
-            <task id="18" name="搜尋Servlet" color="#8cb6ce" meeting="false" start="2017-05-24" duration="11" complete="0" expand="true"/>
-            <task id="22" name="整合" meeting="false" start="2017-06-20" duration="1" complete="0" expand="true"/>
+            <task id="18" name="搜尋Servlet" color="#8cb6ce" meeting="false" start="2017-05-24" duration="10" complete="0" expand="true"/>
+            <task id="22" name="整合" color="#8cb6ce" meeting="false" start="2017-06-14" duration="5" complete="0" expand="true"/>
         </task>
         <task id="11" name="收藏模組" meeting="false" start="2017-05-31" duration="15" complete="0" expand="true">
             <task id="19" name="UI設計與實作" color="#8cb6ce" meeting="false" start="2017-05-31" duration="5" complete="0" expand="true"/>
-            <task id="21" name="收藏Servlet" meeting="false" start="2017-06-20" duration="1" complete="0" expand="true"/>
-            <task id="23" name="整合" meeting="false" start="2017-06-20" duration="1" complete="0" expand="true"/>
+            <task id="21" name="收藏Servlet" color="#8cb6ce" meeting="false" start="2017-06-07" duration="8" complete="0" expand="true"/>
+            <task id="23" name="整合" color="#8cb6ce" meeting="false" start="2017-06-16" duration="3" complete="0" expand="true"/>
         </task>
         <task id="38" name="評論模組" color="#8cb6ce" meeting="false" start="2017-05-31" duration="5" complete="0" expand="true"/>
         <task id="39" name="Google map api" meeting="false" start="2017-05-24" duration="10" complete="0" expand="true">
@@ -66,7 +67,7 @@
             </task>
             <task id="41" name="路線規劃" color="#8cb6ce" meeting="false" start="2017-05-31" duration="5" complete="0" expand="true"/>
         </task>
-        <task id="42" name="整合測試" meeting="false" start="2017-04-03" duration="1" complete="0" expand="true"/>
+        <task id="42" name="整合測試" color="#8cb6ce" meeting="false" start="2017-06-19" duration="2" complete="0" expand="true"/>
     </tasks>
     <resources/>
     <allocations/>

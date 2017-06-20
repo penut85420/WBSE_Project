@@ -99,11 +99,10 @@ $(document).ready(function() {
 			</a>
 	    </div>
    		<!--  <a href="userCollect.jsp">To Collect</a> -->
-   		
 	<!-- ======================================================================================================================================================= -->
 	</div>
 	
-	
+
 	<!-- modal start -->
 	<div class="modal fade" id="modal-container-search" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -143,10 +142,16 @@ $(document).ready(function() {
 								</a>-->
 								<c:set var="count" value="0" scope="page" />
  								<c:forEach items="${sessionScope.yelp}" var="element">
-								<a href="detailSearchUI.jsp?count=${count}&lat=${element.getLatitude()}&lng=${element.getLongitude()}" class="list-group-item">
+ 								<script>
+ 									var nearby = $("#near").val();
+ 									
+ 								</script>
+								<a href="detailSearchUI.jsp?count=${count}&lat=${element.getLatitude()}&lng=${element.getLongitude()}&near='${sessionScope.nearby}'" class="list-group-item">
 									<div class="pull-left">
 										<img class="img-thumbnail" src="${element.getImageURL()}" style="float:left;height:70px;width:70px;">
 									</div>
+									
+									
 									
 									<div class="pull-left" style="margin-left:1vw;text-overflow:ellipsis;">
 										<h4 class="list-group-item-heading">Name : ${element.getBusinessID().toString()}</h4>

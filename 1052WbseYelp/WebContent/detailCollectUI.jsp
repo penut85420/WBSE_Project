@@ -230,19 +230,40 @@ $(document).ready(function() {
 	<div class="row" style="color:white;margin-top:3vh;">	
 		<div class="col-md-1"></div>
 		<div class="col-md-10" style="text-align:left;">
-			${element.getReview().get(0).getUserName()}<br>
-			<span style="color:yellow;">Rating: ${element.getReview().get(0).getRating()}
-			</span>&nbsp;&nbsp;${element.getReview().get(0).getTime()}<br>
+			${element.getReview().get(0).getUserName()}&nbsp;&nbsp;&nbsp;&nbsp;${element.getReview().get(0).getTime()}<br>
+			<span style="color:yellow;" id="rateYo2">Rating:
+			<script>
+					$(function () {
+						  $("#rateYo2").rateYo({
+						    rating: "${element.getReview().get(0).getRating()}"
+						  }); 
+						});
+					</script>
+			</span>
 			${element.getReview().get(0).getReview()}<br><br>
 			
-			${element.getReview().get(1).getUserName()}<br>
-			<span style="color:yellow;">Rating: ${element.getReview().get(1).getRating()}
-			</span>&nbsp;&nbsp;${element.getReview().get(1).getTime()}<br>
+			${element.getReview().get(1).getUserName()}&nbsp;&nbsp;&nbsp;&nbsp;${element.getReview().get(1).getTime()}<br>
+			<span style="color:yellow;" id="rateYo3">
+			<script>
+					$(function () {
+						  $("#rateYo3").rateYo({
+						    rating: "${element.getReview().get(1).getRating()}"
+						  }); 
+						});
+					</script>
+			</span>
 			${element.getReview().get(1).getReview()}<br><br>
 			
-			${element.getReview().get(2).getUserName()}<br>
-			<span style="color:yellow;">Rating: ${element.getReview().get(2).getRating()}
-			</span>&nbsp;&nbsp;${element.getReview().get(2).getTime()}<br>
+			${element.getReview().get(2).getUserName()}&nbsp;&nbsp;&nbsp;&nbsp;${element.getReview().get(2).getTime()}<br>
+			<span style="color:yellow;" id="rateYo4">
+			<script>
+					$(function () {
+						  $("#rateYo4").rateYo({
+						    rating: "${element.getReview().get(2).getRating()}"
+						  }); 
+						});
+					</script>
+			</span>
 			${element.getReview().get(2).getReview()}<br><br>
 		</div>
 		<div class="col-md-1"></div>

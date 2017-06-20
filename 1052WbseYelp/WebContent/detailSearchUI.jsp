@@ -41,9 +41,9 @@ $(document).ready(function() {
 	String count=request.getParameter("count");
 	String shopLat=request.getParameter("lat");
 	String shopLng=request.getParameter("lng");
+	String nearby=request.getParameter("near");
 	System.out.println(shopLat);
 	System.out.println(shopLng);
-	System.out.println(count);
 %>
 
 
@@ -51,8 +51,10 @@ $(document).ready(function() {
 	var poss;
     var shopLattitude=<%=shopLat%>;
 	var shopLongitude=<%=shopLng%>;
+	var near=<%=nearby%>;
 	console.log(shopLattitude);
 	console.log(shopLongitude);
+
 	var pos={
 		lat:shopLattitude,
 		lng:shopLongitude
@@ -62,47 +64,76 @@ $(document).ready(function() {
 			center:pos,
 			zoom:18
 		});
-	
+		
+
+		var poss;
 		var marker;
-		var directionsDisplay=new google.maps.DirectionsRenderer({draggable:true,map:map});
+		var shopMarker;
+		var directionsDisplay=new google.maps.DirectionsRenderer({map:map});
 		var directionsService=new google.maps.DirectionsService();
 		directionsDisplay.setMap(map);
-		directionsDisplay.addListener('directions_changed',function(){
-			computeTotalDistance(directionsDisplay.getDirections());
-			},false);
 		var direcbutton=document.getElementById("direction");
 		direcbutton.addEventListener("click",directing,false);
-		
-		if(navigator.geolocation){
-			navigator.geolocation.getCurrentPosition(function(position){
-				poss={
-						lat:position.coords.latitude,
-						lng:position.coords.longitude
-				};
+			
+			
+		var geocoder = new google.maps.Geocoder();
+		var Longitude,Latitude;
+			
+	
+		geocoder.geocode( { address: near}, function(results, status) {//將地址解讀成經緯度
+			if (status == google.maps.GeocoderStatus.OK) {
+				Longitude = results[0].geometry.location.lng();//得到輸入地址的經緯度
+				Latitude = results[0].geometry.location.lat();
+			} else {
+				alert("Geocode was not successful for the following reason: " + status);//若無法定位，則跳出錯誤訊息
+			}
+		});
 				
-				marker=new google.maps.Marker({
-					position:poss,
-					map:map
-				});
 				
-				startLng=position.coords.longitude;
-				startLat=position.coords.latitude;
-			})
-		}
-		
-		var shopMarker=new google.maps.Marker({
+		shopMarker=new google.maps.Marker({
 			position:pos,
 			map:map
 		});
-		
+			
 		function directing(){
 			var selectedMode=document.getElementById("mode").value;
+			if(cycle=="location"){
+				if(navigator.geolocation){
+					navigator.geolocation.getCurrentPosition(function(position){
+						poss={
+								lat:position.coords.latitude,
+								lng:position.coords.longitude
+						};
+						
+						marker=new google.maps.Marker({
+							position:poss,
+							map:map
+						});
+						
+						startLng=position.coords.longitude;
+						startLat=position.coords.latitude;
+					})
+				}
+			}else{
+				geocoder.geocode( { address: near}, function(results, status) {//將地址解讀成經緯度
+					if (status == google.maps.GeocoderStatus.OK) {
+						Longitude = results[0].geometry.location.lng();//得到輸入地址的經緯度
+						Latitude = results[0].geometry.location.lat();
+					} else {
+						alert("Geocode was not successful for the following reason: " + status);//若無法定位，則跳出錯誤訊息
+					}
+				});
+				poss={
+					lat:Latitude,
+					lng:Longitude
+				}
+			}
 			var request={
 				origin:poss,
 				destination:pos,
 				travelMode:google.maps.TravelMode[selectedMode]
 			};
-			
+					
 			directionsService.route(request,function(result,status){
 				if(status== 'OK'){
 					directionsDisplay.setDirections(result);
@@ -110,19 +141,23 @@ $(document).ready(function() {
 					modalGenerator("發生錯誤", "無法計算適合的路線");
 				}
 			});
-			computeTotalDistance(directionsDisplay.getDirections());
 		}
-		
-		function computeTotalDistance(result){
-			var total=0;
-			var myroute=result.routes[0];
-			for(var i=0;i<myroute.legs.length;i++){
-				total+=myroute.leg[i].distance.value;
-			}
-			total=total/1000;
-			document.getElementById("total").innerHTML="total distance"+total+"km";
-		}
+				
+		shopMarker=new google.maps.Marker({
+			position:pos,
+			map:map
+		});		
 	}
+</script>
+<script>
+	var cycle;
+function radioClick(){
+$(document).ready(function() {
+		cycle = $('input[name=locate]:checked').val();
+		console.log("cycle : " + cycle);
+});
+}
+
 </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDDgyJiejsXuJcizTtM6g_WTWd2tXFP06w&callback=initMap&v=3.exp"></script>
@@ -151,7 +186,68 @@ $(document).ready(function() {
 			<div style="text-overflow:ellipsis;text-align:left;">
 			
 			
-					<h1>${element.getBusinessID()}&nbsp;&nbsp;<span id="heart" style="color:white;cursor:pointer;">❤</span></h1>
+					<h1>${element.getBusinessID()}&nbsp;&nbsp;<span class="heart" style="cursor:pointer; ">❤</span></h1>
+					<script>
+					$(function () {
+						  if(heart==1){
+							  $(".heart").css("color", "red");
+							  console.log($("#heart").css("color"));
+						  }
+						  else{
+							  $(".heart").css("color", "black");
+						  }
+						  $(".heart").click(function(){
+							  if($(".heart").css("color")=="red"){
+								  $(".heart").css("color", "white");
+								  heart=0;
+								  $.ajax({
+										type : "post",
+										cache : false,
+										url : "yelp.do",
+										data : {
+											collect : "${element.getBusinessID()}",
+											collectmethod : 0
+										},
+										dataType : "json",
+										success : function(response) {	
+											if(response=="success"){
+												console.log("收藏刪除成功");
+											}
+											else
+												console.log("收藏刪除失敗");
+										},
+										error : function() {
+											console.log("ajax失敗");
+										}
+									});
+							  }
+							  else{
+								  $(".heart").css("color", "red");
+								  heart=1;
+								  $.ajax({
+										type : "post",
+										cache : false,
+										url : "yelp.do",
+										data : {
+											collect : "${element.getBusinessID()}",
+											collectmethod : 1
+										}										},
+										dataType : "json",
+										success : function(response) {	
+											if(response=="success"){
+												console.log("收藏創立成功");
+											}
+											else
+												console.log("收藏創立失敗");
+										},
+										error : function() {
+											console.log("ajax失敗");
+										}
+									});
+							  }
+						  });
+					});
+					</script>
 					<h5 style="margin-top:6vh;">
 					<div id="rateYo"></div>
 					<script>
@@ -191,6 +287,8 @@ $(document).ready(function() {
 		</div>
 		<div class="col-md-8">	
 			<div class="pull-right">
+				<label><input type="radio" name='locate' value="location" id="location" onclick="radioClick()">現在位置定位</label>
+				<label><input type="radio" name='locate' style="margin-left:3vw" value="nearby" id="nearby" onclick="radioClick()">NearBy定位</label>
 				<select class="form-control" style="width:20vw;text-align:center;text-align-last:center;" id="mode">
 					<option value="DRIVING">Driving</option>
 					<option value="WALKING">Walking</option>
@@ -235,19 +333,40 @@ $(document).ready(function() {
 	<div class="row" style="color:white;margin-top:3vh;">	
 		<div class="col-md-1"></div>
 		<div class="col-md-10" style="text-align:left;">
-			${element.getReview().get(0).getUserName()}<br>
-			<span style="color:yellow;">Rating: ${element.getReview().get(0).getRating()}
-			</span>&nbsp;&nbsp;${element.getReview().get(0).getTime()}<br>
+			${element.getReview().get(0).getUserName()}&nbsp;&nbsp;&nbsp;&nbsp;${element.getReview().get(0).getTime()}<br>
+			<span style="color:yellow;" id="rateYo2">Rating:
+			<script>
+					$(function () {
+						  $("#rateYo2").rateYo({
+						    rating: "${element.getReview().get(0).getRating()}"
+						  }); 
+						});
+					</script>
+			</span>
 			${element.getReview().get(0).getReview()}<br><br>
 			
-			${element.getReview().get(1).getUserName()}<br>
-			<span style="color:yellow;">Rating: ${element.getReview().get(1).getRating()}
-			</span>&nbsp;&nbsp;${element.getReview().get(1).getTime()}<br>
+			${element.getReview().get(1).getUserName()}&nbsp;&nbsp;&nbsp;&nbsp;${element.getReview().get(1).getTime()}<br>
+			<span style="color:yellow;" id="rateYo3">
+			<script>
+					$(function () {
+						  $("#rateYo3").rateYo({
+						    rating: "${element.getReview().get(1).getRating()}"
+						  }); 
+						});
+					</script>
+			</span>
 			${element.getReview().get(1).getReview()}<br><br>
 			
-			${element.getReview().get(2).getUserName()}<br>
-			<span style="color:yellow;">Rating: ${element.getReview().get(2).getRating()}
-			</span>&nbsp;&nbsp;${element.getReview().get(2).getTime()}<br>
+			${element.getReview().get(2).getUserName()}&nbsp;&nbsp;&nbsp;&nbsp;${element.getReview().get(2).getTime()}<br>
+			<span style="color:yellow;" id="rateYo4">
+			<script>
+					$(function () {
+						  $("#rateYo4").rateYo({
+						    rating: "${element.getReview().get(2).getRating()}"
+						  }); 
+						});
+					</script>
+			</span>
 			${element.getReview().get(2).getReview()}<br><br>
 		</div>
 		<div class="col-md-1"></div>
