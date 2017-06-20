@@ -32,6 +32,7 @@ public class YelpReview {
 	
 	public YelpReview() {
 		mURL = mReview = mUserName = mUserPicURL = mTime = "NULL";
+		mRating = 0;
 	}
 
 	public String getURL() { return mURL; }

@@ -105,6 +105,8 @@ public class YelpBusiness {
 			e.printStackTrace();
 			mReview = new ArrayList<>();
 			mReview.add(new YelpReview());
+			mReview.add(new YelpReview());
+			mReview.add(new YelpReview());
 			return null;
 		} 
 	}
