@@ -1,0 +1,105 @@
+使用說明
+1. 這是個eclipse專案，所以直接加到eclipse裡就可以，並調整專案內容及重新匯入外部jar
+2. 各種檔案的位置:
+	servlet 跟 java class 放在 src 裡
+	(按照各自所需的套件位置放)
+	
+	jar檔 放在 WebContent/WEB-INF/lib 裡
+	
+	css檔 放在 WebContent/css 裡
+	(各個模組用不同的css檔案，不要加在別人寫的檔案，以免造成大家混亂)
+	
+	js檔 放在 WebContent/js 裡
+	(各個模組用不同的js檔案，不要加在別人寫的檔案，以免造成大家混亂)
+	
+	html檔 放在 WebContent 裡
+	
+	圖片檔 放在 WebContent/picture 裡
+	(圖片檔請按照各自所需新增資料夾，不要加在別人建的資料夾，以免造成大家混亂，並且取好檔名)
+	
+=================================================================================================
+***資料庫使用說明***
+
+1. 在servlet呼叫
+DBConnection db = (DBConnection) getServletContext().getAttribute("db");
+
+2. select的話使用runSql方法
+ResultSet rs = db.runSql("select userID, account, password from account");
+
+3. INSERT、UPDATE、DELETE則使用updateSql
+int update = conn.updateSql(updatedbSQL);	//我懶得寫，所以用updateSQL代替，寫的時候要寫SQL語法喔
+
+請去看yelp.db.controller和model裡面所寫的
+不會再問我
+
+=================================================================================================
+***登出***
+// 登出
+	$("#logout").click(function() {
+		$.getScript("js/logout.js");
+	});
+=================================================================================================
+***取得使用者id的session***
+	HttpSession session = request.getSession();	
+	String userID = (String) session.getAttribute("userID");
+=================================================================================================
+***model產生器使用***
+<script src="js/modalGenerator.js"></script>
+
+$("body").append(
+		"	<a id='modal-1' href='#modal-container-1' role='button' class='btn' data-toggle='modal' >"+
+		"	</a>");
+
+modalGenerator("title", "body");
+modalGenerator("登出結果", "成功");
+=================================================================================================
+***UI使用說明***
+
+1. 以下功能請寫在
+收藏列表 : collect.js(已寫進standardtitle.jsp)
+登入登出 : login.js
+註冊 : register.js
+搜尋列表 : search.js(已寫進homepageUI.jsp)
+
+2.目前homepageUI.jsp裡面，
+並未幫忙加上原本程式碼，請自行加入
+
+3. 撰寫新的jsp的時候，請先套用模板
+<!-- 模板套用 -->
+<jsp:include page="StandardTitle.jsp" ></jsp:include>
+
+並在body加上以下程式碼，並撰寫至撰寫區裡即可
+<div class="col-md-12">
+	<!-- 撰寫區 -->
+	<!-- ======================================================================================================================================================= -->
+
+	<!-- ======================================================================================================================================================= -->
+	<!-- 撰寫區 -->
+</div>
+=================================================================================================
+***登入狀態跟非登入狀態可做什麼事情***
+
+$(document).ready(function() {
+		$.ajax({
+			url : "LoginVerificationServlet",
+			//url : "http://140.121.197.130:8000/BBDPDoctor/LoginVerificationServlet",
+			data : {
+				state : "judgeLogin"
+			},
+			dataType : "json",
+
+			success : function(response) {	
+				if(response){
+					/*已登入狀態*/
+					console.log("已登入狀態");
+				}
+				else{
+					/*已登出狀態*/
+					console.log("已登出狀態");
+				}
+			},
+			error : function() {
+				console.log("錯誤訊息");
+			}
+		});
+	});
