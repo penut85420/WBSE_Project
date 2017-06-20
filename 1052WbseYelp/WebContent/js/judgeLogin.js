@@ -1,5 +1,6 @@
 $(document).ready(function() {
 		$.ajax({
+			type : "POST",
 			url : "LoginVerificationServlet",
 			//url : "http://140.121.197.130:8000/BBDPDoctor/LoginVerificationServlet",
 			data : {
