@@ -17,23 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-<script>
-var heart=1;	//1紅色愛心 0白色愛心
 
-/*變換愛心顏色*/
-$(document).ready(function() {
-	$("#heart").click(function(e) {
-		if(heart==0){
-			$("#heart").css("color", "white");
-			heart = 1;
-		}
-		else if(heart==1){
-			$("#heart").css("color", "red");
-			heart = 0;
-		}
-	});
-});
-</script>
 
 
 <%
@@ -42,6 +26,8 @@ $(document).ready(function() {
 	String shopLat=request.getParameter("lat");
 	String shopLng=request.getParameter("lng");
 	String nearby=request.getParameter("near");
+	int arr[] = (int [])request.getSession().getAttribute("heart");
+	int heart = arr[Integer.valueOf(count)];
 	System.out.println(shopLat);
 	System.out.println(shopLng);
 %>
@@ -186,9 +172,11 @@ $(document).ready(function() {
 			<div style="text-overflow:ellipsis;text-align:left;">
 			
 			
-					<h1>${element.getBusinessID()}&nbsp;&nbsp;<span class="heart" style="cursor:pointer; ">❤</span></h1>
+					<h1>${element.getBusinessID()}&nbsp;&nbsp;<span class="heart" style="cursor:pointer;">❤</span></h1>
 					<script>
 					$(function () {
+						var heart = <%=heart%>;
+						console.log(heart+"afea");
 						  if(heart==1){
 							  $(".heart").css("color", "red");
 							  console.log($("#heart").css("color"));
@@ -197,7 +185,7 @@ $(document).ready(function() {
 							  $(".heart").css("color", "black");
 						  }
 						  $(".heart").click(function(){
-							  if($(".heart").css("color")=="red"){
+							  if(heart==1){
 								  $(".heart").css("color", "white");
 								  heart=0;
 								  $.ajax({
@@ -231,7 +219,7 @@ $(document).ready(function() {
 										data : {
 											collect : "${element.getBusinessID()}",
 											collectmethod : 1
-										}										},
+										},
 										dataType : "json",
 										success : function(response) {	
 											if(response=="success"){
