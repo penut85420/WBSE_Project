@@ -194,7 +194,7 @@ $(document).ready(function() {
 										url : "yelp.do",
 										data : {
 											collect : "${element.getBusinessID()}",
-											collectmethod : 0
+											collectmethod : 2
 										},
 										dataType : "json",
 										success : function(response) {	

@@ -25,7 +25,12 @@
 <!-- modalGenerator js 
 <script src="js/modalGenerator.js"></script>
 -->
-
+<script>
+	var arr=[];
+	for(var i=0;i<50;i++){
+		arr[i]=1;
+	}
+</script>
 </head>
 <body>	
 	<div class="col-md-12">
@@ -99,9 +104,14 @@
 						<c:set var="count" value="0" scope="page" />
  						<c:forEach items="${sessionScope.showCollect}" var="element">
 							<div class="col-md-1">
-										<div class="pull-left" id="heart" style="color:red;cursor:pointer;">
+										<div class="pull-left" id="${count}" onclick="test(this.id)" style="color:red;cursor:pointer;">
 											<h1>❤</h1>
 										</div>
+										<c:choose>
+										<c:when test="${count>=0}">
+										
+										</c:when>
+										</c:choose>
 							</div>
 					    	<div class="col-md-11">
 									<a href="detailCollectUI.jsp?count=${count}&lat=${element.getLatitude()}&lng=${element.getLongitude()}" class="list-group-item">
@@ -136,6 +146,59 @@
 	</div>
 	<!-- modal end -->
 	<script>
+	
+	  function test(th){
+		  console.log(th+"efae");
+	    if(arr[th]==1){
+	    	$("#"+th).css("color", "black");
+	    	arr[th]=0;
+	    	$.ajax({
+				type : "post",
+				cache : false,
+				url : "yelp.do",
+				data : {
+					collect : "${element.getBusinessID()}",
+					collectmethod : 2
+				},
+				dataType : "json",
+				success : function(response) {	
+					if(response=="success"){
+						console.log("收藏刪除成功");
+					}
+					else
+						console.log("收藏刪除失敗");
+				},
+				error : function() {
+					console.log("ajax失敗");
+				}
+			});
+	    }
+	    else{
+	    	$("#"+th).css("color", "red");
+	    	arr[th]=1;
+	    	$.ajax({
+				type : "post",
+				cache : false,
+				url : "yelp.do",
+				data : {
+					collect : "${element.getBusinessID()}",
+					collectmethod : 1
+				},
+				dataType : "json",
+				success : function(response) {	
+					if(response=="success"){
+						console.log("收藏創立成功");
+					}
+					else
+						console.log("收藏創立失敗");
+				},
+				error : function() {
+					console.log("ajax失敗");
+				}
+			});
+	    }
+	  } 
+
 		$("#collect").click(
 				function(){
 					$.ajax({

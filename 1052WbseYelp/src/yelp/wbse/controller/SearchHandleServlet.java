@@ -13,14 +13,15 @@ import yelp.wbse.model.*;
 
 public class SearchHandleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Gson gson = new Gson();
 		String search = request.getParameter("search");
 		String collect = request.getParameter("collect");
 		String key = request.getParameter("key");
 		String location = request.getParameter("location");
-		String collectmethod = request.getParameter("collectmethod");
+		int collectmethod=0;
+		if(request.getParameter("collectmethod") != null){
+			collectmethod = Integer.valueOf(request.getParameter("collectmethod"));}
 		if (search != null) {
 			YelpParameter yelpparameter = new YelpParameter();
 			yelpparameter.setParam("term", key);
@@ -56,7 +57,7 @@ public class SearchHandleServlet extends HttpServlet {
 			System.out.println(collect);
 			JSONArray arra = (JSONArray) request.getSession().getAttribute("userCollect");
 			String choice = request.getParameter("collect");
-			if(collectmethod=="1"){
+			if(collectmethod==1){
 				arra.put(choice);
 			}
 			else
