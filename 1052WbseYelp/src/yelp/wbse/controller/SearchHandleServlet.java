@@ -29,7 +29,7 @@ public class SearchHandleServlet extends HttpServlet {
 			ArrayList<YelpBusiness> arr = YelpSearch.getBusiness(yelpparameter);
 
 			request.getSession().setAttribute("yelp", arr);
-
+			request.getSession().setAttribute("nearby",request.getParameter("location") );
 			if (request.getSession().getAttribute("yelp") != null)
 				response.getWriter().write(gson.toJson("success"));
 			else
